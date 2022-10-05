@@ -36,7 +36,7 @@ public class BlockBuilder : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent<Movement>(out Movement movement))
+        if (collision.gameObject.TryGetComponent<PlayerMovement>(out PlayerMovement movement))
         {
             if (_IELeftOnBase != null)
             {
@@ -50,7 +50,7 @@ public class BlockBuilder : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent<Movement>(out Movement movement))
+        if (collision.gameObject.TryGetComponent<PlayerMovement>(out PlayerMovement movement))
         {
 
             if (_IEOnBase != null)

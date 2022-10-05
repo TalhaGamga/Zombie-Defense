@@ -6,13 +6,13 @@ using System;
 public class ZombieController : MonoBehaviour
 {
     NavMeshAgent navMeshAgent;
-    public GameObject target; // make here gameObject and make it dynamic.
+    public GameObject target; 
 
     private Animator anim;
 
     Coroutine _IEAttackToDoor;
 
-    int hp = 5;
+    int hp = 2;
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -87,8 +87,24 @@ public class ZombieController : MonoBehaviour
     //    //    timer += Time.deltaTime;
     //    //}
     //}
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent<DoorStateManager>(out DoorStateManager doorStateManager))
+        {
 
-    void AttackToDoor(DoorController targetDoor) //ERROR IS HEREEEEE! ! ! !
+            _IEAttackToDoor = StartCoroutine(IEAttackToDoor(doorStateManager));
+             
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent<DoorController>(out DoorController doorController))
+        {
+            StopCoroutine(_IEAttackToDoor);
+        }
+    }
+    void AttackToDoor(DoorStateManager targetDoor) //ERROR IS HEREEEEE! ! ! !
     {
         if (targetDoor == null)
         {
@@ -96,11 +112,12 @@ public class ZombieController : MonoBehaviour
         }
         targetDoor.Hit(1);//error
     }
-    IEnumerator IEAttackToDoor(DoorController doorController)
+    IEnumerator IEAttackToDoor(DoorStateManager doorStateManager)
     {
-        while (doorController != null)
+        while (doorStateManager!= null)
         {
-            AttackToDoor(doorController);
+            Debug.Log("IEAttackDoor çalýþýyor");
+            AttackToDoor(doorStateManager);
             yield return new WaitForSeconds(3f);
         }
     }
@@ -114,24 +131,5 @@ public class ZombieController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.TryGetComponent<DoorController>(out DoorController doorController))
-        {
-
-            _IEAttackToDoor = StartCoroutine(IEAttackToDoor(doorController));
-
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.TryGetComponent<DoorController>(out DoorController doorController))
-        {
-            StopCoroutine(_IEAttackToDoor);
-        }
-    }
-
 
 }

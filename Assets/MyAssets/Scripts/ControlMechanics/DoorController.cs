@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using UnityEngine.AI;
 public class DoorController : MonoBehaviour
 {
     float maxHealth = 5;
@@ -24,6 +23,7 @@ public class DoorController : MonoBehaviour
     {
         currentHealth = maxHealth;
     }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -41,7 +41,6 @@ public class DoorController : MonoBehaviour
 
             if (currentHealth < 1)
             {
-
                 currentState = DoorState.broken;
                 KillDoor();//error
             }

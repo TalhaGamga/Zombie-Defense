@@ -5,8 +5,10 @@ using System;
 public class ZombieSpawnManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] GameObject target;
+    [SerializeField] GameObject doorTargetPoint;
     [SerializeField] GameObject zombiePrefab;
+
+    [SerializeField] DoorStateManager doorStateManager;
 
     GameObject zombie;
 
@@ -14,17 +16,20 @@ public class ZombieSpawnManager : MonoBehaviour
 
     private void Awake()
     {
-        
     }
+
     void Start()
     {
-        StartCoroutine(SpawnZombie()); 
+        StartCoroutine(SpawnZombie());
     }
 
-    // Update is called once per frame
+    // Update is called once per frame 
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(SpawnZombie());
+        }
     }
 
     IEnumerator SpawnZombie()
@@ -36,6 +41,15 @@ public class ZombieSpawnManager : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
-        OnSettingTarget?.Invoke(target);
+        if (doorStateManager.doorProps.CurrentHp>0)
+        {
+            OnSettingTarget?.Invoke(doorTargetPoint); //Make here automatic (target setter etc.)
+        }
+
+        else
+        {
+            OnSettingTarget?.Invoke(PlayerManager.Instance.player);
+        }
+
     }
 }

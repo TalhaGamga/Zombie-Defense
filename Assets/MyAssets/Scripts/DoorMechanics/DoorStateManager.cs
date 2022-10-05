@@ -1,23 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class DoorStateManager : MonoBehaviour
 {
-    // Start is called before the first frame update
     public DoorBaseState currentState;
-    public SolidState solidState = new SolidState();
-    public BrokenState brokenState = new BrokenState();
+    private SolidState solidState = new SolidState();
+    private BrokenState brokenState = new BrokenState();
 
-    void Start()
+    public event Action<float> OnHpPctChanged = delegate { };
+
+    [SerializeField] public DoorProperties doorProps;
+    [SerializeField] public GameObject doorObj;
+
+    [SerializeField] public ZombieSpawnManager zombieSpawnManager;
+
+    public float timer = 0;
+    Coroutine _IEOnBase;
+    Coroutine _IELeftOnBase;
+
+    private void OnEnable()
     {
-        currentState.EnterState(this);
+        currentState = solidState;
     }
-
-    // Update is called once per frame
+    private void Start()
+    {
+    }
     void Update()
     {
-        currentState.UpdateState(this);
+
     }
 
     public void SwitchState(DoorState state)
@@ -34,8 +46,77 @@ public class DoorStateManager : MonoBehaviour
         }
     }
 
+    public void Hit(int hit) 
+    {
+        if (doorObj)
+        {
+            currentState.Hit(this, doorProps, hit, doorObj);
+            OnHpPctChanged((doorProps.CurrentHp - hit) / doorProps.MaxHp);
+        }
+    }
+
     public void OnCollisionEnter(Collision collision)
     {
-        currentState.OnCollisionEnter(this);
+        currentState.OnCollisionEnter(this, collision);
+    }
+    public void OnCollisionExit(Collision collision)
+    {
+        currentState.OnCollisionExit(this, collision);
+    }
+
+    public void CallIEOnBase()
+    {
+        if (_IELeftOnBase != null)
+        {
+            StopCoroutine(_IELeftOnBase);
+        }
+
+        _IEOnBase = StartCoroutine(IEOnBase());
+    }
+
+    public void CallIELeftOnBase()
+    {
+        StopCoroutine(_IEOnBase);
+        _IELeftOnBase = StartCoroutine(IELeftOnBase());
+    }
+
+    IEnumerator IEOnBase()
+    {
+        while (timer < doorProps.MaxHp)
+        {
+            Debug.Log(1);
+            timer += Time.deltaTime;
+            doorProps.CurrentHp = timer;
+            OnHpPctChanged(timer / doorProps.MaxHp);
+            yield return null;
+        }
+
+        StopCoroutine(_IEOnBase);
+
+        SwitchState(DoorState.solid);
+        currentState.EnterState(this);
+    }
+
+    IEnumerator IELeftOnBase()
+    {
+        while (timer < doorProps.HalfHp && timer > 0)
+        {
+            Debug.Log(2);
+            timer -= Time.deltaTime;
+            doorProps.CurrentHp = timer;
+            OnHpPctChanged(timer / doorProps.MaxHp);
+            yield return null;
+        }
+
+        while (timer > doorProps.HalfHp && timer < doorProps.MaxHp)
+        {
+            Debug.Log(3);
+            timer -= Time.deltaTime;
+            doorProps.CurrentHp = timer;
+            OnHpPctChanged(timer / doorProps.MaxHp);
+            yield return null;
+        }
+
+        StopAllCoroutines();
     }
 }

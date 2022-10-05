@@ -54,8 +54,6 @@ public class FireController : MonoBehaviour
             transform.LookAt(FindClosestCollider().transform.position);
             Debug.DrawLine(FindClosestCollider().transform.position, transform.position, Color.red, 0f, true);
         }
-
-
     }
 
     Collider FindClosestCollider()

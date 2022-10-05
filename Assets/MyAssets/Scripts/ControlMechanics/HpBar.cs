@@ -7,11 +7,11 @@ public class HpBar : MonoBehaviour
     [SerializeField]
     private Image foregroundImage;
     [SerializeField]
-    private DoorController doorController;
+    private DoorStateManager stateManager;
 
     private void Awake()
     {
-        doorController.OnHpPctChanged += HandleHpChanged;
+        stateManager.OnHpPctChanged += HandleHpChanged;
     }
 
     private void HandleHpChanged(float pct)
