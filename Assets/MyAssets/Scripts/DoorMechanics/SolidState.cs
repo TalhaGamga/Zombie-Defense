@@ -18,7 +18,6 @@ public class SolidState : DoorBaseState
     public override void Hit(DoorStateManager door, DoorProperties doorProps, int hit, GameObject doorObj)
     {
         doorProps.CurrentHp -= hit;
-        Debug.Log("Hit's working");
 
         if (door.doorProps.CurrentHp < 1)
         {

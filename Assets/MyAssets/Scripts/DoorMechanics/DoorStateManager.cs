@@ -84,7 +84,6 @@ public class DoorStateManager : MonoBehaviour
     {
         while (timer < doorProps.MaxHp)
         {
-            Debug.Log(1);
             timer += Time.deltaTime;
             doorProps.CurrentHp = timer;
             OnHpPctChanged(timer / doorProps.MaxHp);
@@ -101,7 +100,6 @@ public class DoorStateManager : MonoBehaviour
     {
         while (timer < doorProps.HalfHp && timer > 0)
         {
-            Debug.Log(2);
             timer -= Time.deltaTime;
             doorProps.CurrentHp = timer;
             OnHpPctChanged(timer / doorProps.MaxHp);
@@ -110,7 +108,6 @@ public class DoorStateManager : MonoBehaviour
 
         while (timer > doorProps.HalfHp && timer < doorProps.MaxHp)
         {
-            Debug.Log(3);
             timer -= Time.deltaTime;
             doorProps.CurrentHp = timer;
             OnHpPctChanged(timer / doorProps.MaxHp);

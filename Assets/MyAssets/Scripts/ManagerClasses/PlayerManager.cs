@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     private static PlayerManager instance;
+
+    public int gold = 0;
     public static PlayerManager Instance
     {
         get
@@ -18,7 +20,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-     public GameObject player;
+    public GameObject player;
 
     private void OnEnable()
     {

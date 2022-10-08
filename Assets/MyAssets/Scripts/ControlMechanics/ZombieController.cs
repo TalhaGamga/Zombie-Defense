@@ -6,7 +6,7 @@ using System;
 public class ZombieController : MonoBehaviour
 {
     NavMeshAgent navMeshAgent;
-    public GameObject target; 
+    public GameObject target;
 
     private Animator anim;
 
@@ -93,7 +93,7 @@ public class ZombieController : MonoBehaviour
         {
 
             _IEAttackToDoor = StartCoroutine(IEAttackToDoor(doorStateManager));
-             
+
         }
     }
 
@@ -114,9 +114,8 @@ public class ZombieController : MonoBehaviour
     }
     IEnumerator IEAttackToDoor(DoorStateManager doorStateManager)
     {
-        while (doorStateManager!= null)
+        while (doorStateManager != null)
         {
-            Debug.Log("IEAttackDoor çalýþýyor");
             AttackToDoor(doorStateManager);
             yield return new WaitForSeconds(3f);
         }
@@ -127,8 +126,11 @@ public class ZombieController : MonoBehaviour
     {
         hp -= damage;
         if (hp < 1)
-        {
+        { 
+            DropManager.Instance.DropGold(gameObject.transform);
             Destroy(gameObject);
+            //PlayerManager.Instance.gold++;
+            //UiManager.Instance.SetGoldText();
         }
     }
 
