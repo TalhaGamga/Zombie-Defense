@@ -1,39 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-public class PlayerManager : MonoBehaviour
+using System;
+public class PlayerManager : Singleton<PlayerManager>
 {
-    private static PlayerManager instance;
+    public Action OnPanelOpenedOrClosed;
 
-    public int gold = 0;
-    public static PlayerManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new GameObject("PlayerManager").AddComponent<PlayerManager>();
-            }
+    public PlayerStats stats;
 
-            return instance;
-        }
-    }
-
+    public float gold = 0;
     public GameObject player;
-
-    private void OnEnable()
-    {
-        instance = this;
-    }
-
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
+    public GameObject equippedItem;
 }

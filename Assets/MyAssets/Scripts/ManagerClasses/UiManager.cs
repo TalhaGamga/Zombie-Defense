@@ -4,56 +4,84 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
-public class UiManager : MonoBehaviour
+public class UiManager : Singleton<UiManager>
 {
-    #region Singleton
-    private static UiManager instance;
-    public static UiManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new GameObject("UiManager").AddComponent<UiManager>();
-            }
-
-            return instance;
-        }
-    }
-
-    private void OnEnable()
-    {
-        instance = this;
-    }
-    #endregion
-
     public TextMeshProUGUI goldText;
     [SerializeField] private TextMeshProUGUI pfPoppingUpGold;
     [SerializeField] private Canvas uiCanvas;
     [SerializeField] Transform popUpPos;
+
+    public GameObject UiMarket;
     public Camera mainCamera;
 
     private void Start()
     {
-        SetGoldText();
+        InitGoldText();
     }
-    public void SetGoldText()
-    {
-        goldText.text = PlayerManager.Instance.gold.ToString();
+    public void SetGoldOnMarket(float price)
+    { 
+        float currentGold = PlayerManager.Instance.gold;
+
+        float targetGold = currentGold - price;
+
+        PlayerManager.Instance.gold = targetGold;
+        UiManager.Instance.goldText.text = targetGold.ToString();
     }
 
-    public IEnumerator PLayPopUpGold(int goldNum)
+    public void SetGoldOnCollect(float price)
+    {
+        float currentGold = PlayerManager.Instance.gold;
+
+        float targetGold = currentGold + price;
+
+        PlayerManager.Instance.gold = targetGold; 
+
+        UiManager.Instance.goldText.text = targetGold.ToString();
+    }
+    public IEnumerator PLayPopUpGold(float price)
     {
         TextMeshProUGUI effect = Instantiate(pfPoppingUpGold, popUpPos.position, Quaternion.identity, uiCanvas.transform);
-        effect.text = goldNum.ToString();
-        effect.transform.DOLocalMoveY(transform.localPosition.y + 50, .2f); 
-        effect.transform.DOScale(transform.localScale + Vector3.one/3, 0.2f); 
+        effect.text = price.ToString();
+        effect.transform.DOLocalMoveY(transform.localPosition.y + 50, .2f);
+        effect.transform.DOScale(transform.localScale + Vector3.one / 3, 0.2f);
         yield return new WaitForSeconds(.2f);
-        Destroy(effect);
+
+        Destroy(effect.gameObject);
     }
 
-    public void CallIEPlayPopUpGold(int goldNum)
+    public void CallIEPlayPopUpGold(float price)
     {
-        StartCoroutine(PLayPopUpGold(goldNum));
+        StartCoroutine(PLayPopUpGold(price));
+    }
+
+    public void OpenMarket()
+    {
+        UiMarket.gameObject.SetActive(true);
+        PlayerManager.Instance.OnPanelOpenedOrClosed();
+    }
+    public void CloseMarket()
+    {
+        UiMarket.gameObject.SetActive(false);
+        PlayerManager.Instance.OnPanelOpenedOrClosed();
+    }
+
+    //IEnumerator IESetGoldOnCollect(float price) 
+    //{
+    //    float currentGold = PlayerManager.Instance.gold;
+    //    float targetGold = currentGold + price;
+
+    //    PlayerManager.Instance.gold = targetGold;
+
+    //    while (currentGold < targetGold)
+    //    {
+    //        currentGold++;
+    //        UiManager.Instance.goldText.text = currentGold.ToString();
+    //        yield return new WaitForSeconds(.1f);
+    //    }
+    //}
+
+    void InitGoldText() 
+    {
+        goldText.text = PlayerManager.Instance.gold.ToString();
     }
 }

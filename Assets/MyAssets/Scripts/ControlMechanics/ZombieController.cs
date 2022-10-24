@@ -12,10 +12,14 @@ public class ZombieController : MonoBehaviour
 
     Coroutine _IEAttackToDoor;
 
-    int hp = 2;
+    [SerializeField] private ZombieStats stats;
+
+    public event Action<float> OnHpPctChanged = delegate { };
+
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.speed = stats.movementSpeed.GetValue();
         GetComponentInParent<ZombieSpawnManager>().OnSettingTarget += SetTarget;
     }
 
@@ -43,7 +47,6 @@ public class ZombieController : MonoBehaviour
 
         navMeshAgent.SetDestination(target.transform.position);
 
-
         //if (Vector3.Distance(target.position, transform.position) > navMeshAgent.stoppingDistance)
         //{
         //    Run();
@@ -53,10 +56,7 @@ public class ZombieController : MonoBehaviour
         //{
         //    Idle();
         //}
-
     }
-
-
 
     //private void Idle()
     //{
@@ -87,19 +87,23 @@ public class ZombieController : MonoBehaviour
     //    //    timer += Time.deltaTime;
     //    //}
     //}
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.TryGetComponent<DoorStateManager>(out DoorStateManager doorStateManager))
         {
-
             _IEAttackToDoor = StartCoroutine(IEAttackToDoor(doorStateManager));
+        }
 
+        if (collision.gameObject.TryGetComponent<PlayerStats>(out PlayerStats playerStats))
+        {
+            playerStats.TakeDamage(stats.damage.GetValue());
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent<DoorController>(out DoorController doorController))
+        if (collision.gameObject.TryGetComponent<DoorStateManager>(out DoorStateManager doorStateManager))
         {
             StopCoroutine(_IEAttackToDoor);
         }
@@ -110,28 +114,14 @@ public class ZombieController : MonoBehaviour
         {
             return;
         }
-        targetDoor.Hit(1);//error
+        targetDoor.Hit(stats.damage.GetValue() / 10);
     }
     IEnumerator IEAttackToDoor(DoorStateManager doorStateManager)
-    {
+    { 
         while (doorStateManager != null)
         {
             AttackToDoor(doorStateManager);
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(stats.reattackSpeed.GetValue());
         }
     }
-
-
-    public void Hit(int damage)
-    {
-        hp -= damage;
-        if (hp < 1)
-        { 
-            DropManager.Instance.DropGold(gameObject.transform);
-            Destroy(gameObject);
-            //PlayerManager.Instance.gold++;
-            //UiManager.Instance.SetGoldText();
-        }
-    }
-
 }

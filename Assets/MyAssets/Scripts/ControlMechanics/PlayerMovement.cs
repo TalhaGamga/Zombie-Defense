@@ -1,27 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float runSpeed;
     [SerializeField] private Camera camera;
     [SerializeField] private LayerMask layerMask;
+    [SerializeField] private PlayerStats stats;
+
+    public bool isMovable = true;
 
     Vector3 direction;
-    private Animator anim;
+    [SerializeField] private Animator anim;
+
+    [SerializeField] private TargetDetectment targetDetecment;
+    private void Awake()
+    {
+        PlayerManager.Instance.OnPanelOpenedOrClosed += ChangeIsMovable;
+    }
 
     private void Start()
     {
         //anim = GetComponentInChildren<Animator>();
+
     }
-    private void Update()  
+    private void Update()
     {
         Move();
     }
 
     void Move()
     {
+
+        if (!isMovable)
+        {
+            return;
+        }
 
         if (Input.GetMouseButton(0))
         {
@@ -30,27 +46,47 @@ public class PlayerMovement : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, layerMask))
             {
                 direction = (raycastHit.point - transform.position).normalized;
-                var rot = Quaternion.LookRotation(direction, Vector3.up);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 360 * Time.deltaTime);
+                if (targetDetecment.targetColliders.Length < 1)
+                {
+                    var rot = Quaternion.LookRotation(direction, Vector3.up);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 720 * Time.deltaTime);
+                }
+
             }
 
-            //Run();
+            Run();
 
-            transform.Translate(Vector3.Lerp(Vector3.zero, direction * runSpeed * Time.deltaTime, 1), Space.World);
+            transform.Translate(Vector3.Lerp(Vector3.zero, direction * stats.movementSpeed.GetValue() * Time.deltaTime, 1), Space.World);
         }
 
         else
         {
-            //Idle();
+            Idle();
         }
     }
-    //private void Idle()
-    //{
-    //    anim.SetFloat("Speed", 0, 0.2f, Time.deltaTime);
-    //}
 
-    //private void Run()
-    //{
-    //    anim.SetFloat("Speed", 1f, 0.2f, Time.deltaTime);
-    //}
+    private void ChangeIsMovable()
+    {
+        if (isMovable == true)
+        {
+            isMovable = false;
+            return;
+        }
+
+        if (isMovable == false)
+        {
+            isMovable = true;
+            return;
+        }
+    }
+
+    private void Idle()
+    {
+        anim.SetFloat("Speed", 0, 0.1f, Time.deltaTime);
+    }
+
+    private void Run()
+    {
+        anim.SetFloat("Speed", 1f, 0.1f, Time.deltaTime);
+    }
 }
