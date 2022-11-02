@@ -28,7 +28,7 @@ public class FireController : MonoBehaviour
 
     void Update()
     {
-        if (lockTarget.targetColliders.Length > 0)
+        if (lockTarget.zombieColliders.Length > 0)
         {
             OnTargetDetected?.Invoke();
         }

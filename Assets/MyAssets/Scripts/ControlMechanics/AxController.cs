@@ -29,7 +29,7 @@ public class AxController : MonoBehaviour
     }
     private void Awake()
     {
-        TargetDetecment.range = weaponSO.range;
+        TargetDetecment.attackRange = weaponSO.range;
 
         damage = weaponSO.damage;
 
@@ -37,7 +37,7 @@ public class AxController : MonoBehaviour
 
     private void Update()
     {
-        if (TargetDetecment.targetColliders.Length > 0)
+        if (TargetDetecment.zombieColliders.Length > 0)
         {
             Attack();
         }

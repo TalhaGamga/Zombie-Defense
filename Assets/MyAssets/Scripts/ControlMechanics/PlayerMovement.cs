@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, layerMask))
             {
                 direction = (raycastHit.point - transform.position).normalized;
-                if (targetDetecment.targetColliders.Length < 1)
+                if (targetDetecment.zombieColliders.Length < 1)
                 {
                     var rot = Quaternion.LookRotation(direction, Vector3.up);
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 720 * Time.deltaTime);
@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
 
             Run();
 
-            transform.Translate(Vector3.Lerp(Vector3.zero, direction * stats.movementSpeed.GetValue() * Time.deltaTime, 1), Space.World);
+            transform.Translate(Vector3.Lerp(Vector3.zero, direction * stats.movementSpeed * Time.deltaTime, 1), Space.World);
         }
 
         else

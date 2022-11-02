@@ -36,11 +36,11 @@ public class DoorStateManager : MonoBehaviour
     {
         switch (state)
         {
-            case DoorState.solid:
+            case DoorState.Solid:
                 currentState = solidState;
                 break;
 
-            case DoorState.broken:
+            case DoorState.Broken:
                 currentState = brokenState;
                 currentState.EnterState(this);
                 break;
@@ -93,7 +93,7 @@ public class DoorStateManager : MonoBehaviour
 
         StopCoroutine(_IEOnBase);
 
-        SwitchState(DoorState.solid);
+        SwitchState(DoorState.Solid);
         currentState.EnterState(this);
     }
 

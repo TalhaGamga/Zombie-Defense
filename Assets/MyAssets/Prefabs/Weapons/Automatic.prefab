@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &575190600249829652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8871894558869848979}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8871894558869848979
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575190600249829652}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 1.497, z: 1.241}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7311905968039959083}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7311905967014065294
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +363,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7311905968039959083}
+  - component: {fileID: 6835780968833249657}
   m_Layer: 0
   m_Name: Automatic
   m_TagString: Untagged
@@ -347,60 +378,38 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7311905968039959082}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8294775, y: 0.48902935, z: 0.886033}
+  m_LocalRotation: {x: -0.60774547, y: 0.309586, z: 0.34932873, w: 0.6424729}
+  m_LocalPosition: {x: 0.0699, y: 0.17, z: 0.0823}
+  m_LocalScale: {x: 0.13653038, y: 0.09439081, z: 0.13358784}
   m_Children:
   - {fileID: 6461721676065656044}
-  - {fileID: 7311905968222564648}
+  - {fileID: 8871894558869848979}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7311905968222564655
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7311905968222564648}
-  - component: {fileID: 1033854040457356563}
-  m_Layer: 0
-  m_Name: FireSlot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7311905968222564648
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7311905968222564655}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0048225382, y: 1.491, z: 1.269}
-  m_LocalScale: {x: 1.2055782, y: 2.0365865, z: 1.1243628}
-  m_Children: []
-  m_Father: {fileID: 7311905968039959083}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1033854040457356563
+  m_LocalEulerAnglesHint: {x: -85.723, y: -381.062, z: 436.64398}
+--- !u!114 &6835780968833249657
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7311905968222564655}
+  m_GameObject: {fileID: 7311905968039959082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25e8d30e7c7c2fa4c94243a1b677f183, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d43d1c4afa6dbb4ba168153b8e1e000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletController: {fileID: -8292847543380948484, guid: 6d7a05efd0f9560449a08583d6184b42, type: 3}
+  state: 0
+  range: 0
+  reattackTime: 0
+  damage: 0
+  price: 0
+  itemInfo: 
+  pickUpPos: {x: 0, y: 0, z: 0}
+  pickUpRot: {x: 0, y: 0, z: 0, w: 0}
+  pickUpScale: {x: 0, y: 0, z: 0}
   weaponSO: {fileID: 11400000, guid: a0fd78d53df11ca43b2b5db09014e376, type: 2}
+  firePoint: {fileID: 8871894558869848979}
 --- !u!1 &7311905968280145981
 GameObject:
   m_ObjectHideFlags: 0

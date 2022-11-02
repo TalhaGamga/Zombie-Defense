@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea843608aea22f542914a2c7d595f366, type: 3}
   m_Name: Smg
   m_EditorClassIdentifier: 
-  range: 15
-  reattackTime: 0.3
-  damage: 3
-  price: 0
-  itemInfo: Smg
+  state: 0
+  range: 5
+  reattackTime: 0.5
+  damage: 5
+  price: 2500
+  itemInfo: Smg Gun
   pickUpPos: {x: -0.0222, y: 0.0519, z: 0.011}
   pickupRot: {x: 7.555668, y: 325.1652, z: 90.47469}

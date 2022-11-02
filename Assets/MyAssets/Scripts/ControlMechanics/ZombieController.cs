@@ -6,9 +6,9 @@ using System;
 public class ZombieController : MonoBehaviour
 {
     NavMeshAgent navMeshAgent;
-    public GameObject target;
+    public GameObject target; 
 
-    private Animator anim;
+    private Animator anim; 
 
     Coroutine _IEAttackToDoor;
 
@@ -19,14 +19,10 @@ public class ZombieController : MonoBehaviour
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        navMeshAgent.speed = stats.movementSpeed.GetValue();
+        navMeshAgent.speed = stats.movementSpeed;
         GetComponentInParent<ZombieSpawnManager>().OnSettingTarget += SetTarget;
     }
 
-    public void SetTarget(GameObject _target)
-    {
-        target = _target;
-    }
     void Start()
     {
         /*anim = GetComponent<Animator>()*/
@@ -36,6 +32,11 @@ public class ZombieController : MonoBehaviour
     void Update()
     {
         CatchTarget();
+    }
+
+    public void SetTarget(GameObject _target)
+    {
+        target = _target;
     }
 
     void CatchTarget()
@@ -97,7 +98,7 @@ public class ZombieController : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent<PlayerStats>(out PlayerStats playerStats))
         {
-            playerStats.TakeDamage(stats.damage.GetValue());
+            playerStats.TakeDamage(stats.damage);
         }
     }
 
@@ -114,14 +115,14 @@ public class ZombieController : MonoBehaviour
         {
             return;
         }
-        targetDoor.Hit(stats.damage.GetValue() / 10);
+        targetDoor.Hit(stats.damage/ 10);
     }
     IEnumerator IEAttackToDoor(DoorStateManager doorStateManager)
     { 
         while (doorStateManager != null)
         {
             AttackToDoor(doorStateManager);
-            yield return new WaitForSeconds(stats.reattackSpeed.GetValue());
+            yield return new WaitForSeconds(stats.reattackSpeed);
         }
     }
 }

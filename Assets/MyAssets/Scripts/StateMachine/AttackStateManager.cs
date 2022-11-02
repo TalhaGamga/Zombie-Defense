@@ -1,14 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Animations.Rigging;
 public class AttackStateManager : MonoBehaviour
 {
     public CharacterAttackBaseState currentState;
     public GunAttackState gunAttackState = new GunAttackState();
     public AxAttackState axAttackState = new AxAttackState();
 
-    [SerializeField] GameObject axCollider;
+    [Header("Ax Specials")]
+    public GameObject ax;
+    public AxCollision axCollision;
+    public Rig axHolderRig;
+
+    [Header("Gun Specials")]
+    public GameObject gun;
+    public Rig gunHolderRig;
+    public Vector3 shootDir;
+    public BulletController bulletController;
+    public Transform firePoint;
+
+    [Header("Weapon Replecament Specials")]
+    public GameObject parentPartOfBody;
+
+    [Header("Current Attack State")]
+    public AttackState attackState;
+
+    [Header("General Weapon Props")]
+    public float raTime;
+
+
     public Animator playerAnim
     {
         get
@@ -17,8 +38,10 @@ public class AttackStateManager : MonoBehaviour
         }
     }
 
-    public WeaponProperties props;
-    public TargetDetectment targetDetectment;
+    [Header("Props")]
+    public WeaponPropertiesBase props;
+
+    private TargetDetectment targetDetectment;
     public TargetDetectment TargetDetectment
     {
         get
@@ -31,21 +54,51 @@ public class AttackStateManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        currentState = axAttackState;
-        GetProps();
-        SetTargetDetecment();
-        GetProps();
+        InitState(AttackState.Ax);
     }
 
     private void Update()
     {
         currentState.UpdateState(this);
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            currentState.Attack(this, props);
+            switch (attackState)
+            {
+                case AttackState.Gun:
+                    SwitchState(AttackState.Ax);
+                    currentState.EnterState(this);
+                    break;
+
+                case AttackState.Ax:
+                    SwitchState(AttackState.Gun);
+                    currentState.EnterState(this);
+                    break;
+            }
+        }
+    }
+
+    private void InitState(AttackState state)
+    {
+        switch (state)
+        {
+            case AttackState.Gun:
+                attackState = AttackState.Gun;
+                currentState = gunAttackState;
+                currentState.EnterState(this);
+
+
+                break;
+
+            case AttackState.Ax:
+                attackState = AttackState.Ax;
+                currentState = axAttackState;
+                currentState.EnterState(this);
+
+
+                break;
         }
     }
 
@@ -53,32 +106,41 @@ public class AttackStateManager : MonoBehaviour
     {
         switch (state)
         {
-            case AttackState.gun:
+            case AttackState.Gun:
+                attackState = AttackState.Gun;
                 currentState = gunAttackState;
+                currentState.EnterState(this);
                 break;
 
             case AttackState.Ax:
+                attackState = AttackState.Ax;
                 currentState = axAttackState;
+                currentState.EnterState(this);
                 break;
         }
     }
 
-    public void GetProps()
+    public void GetProps(AttackState state)
     {
-        props = GetComponentInChildren<WeaponProperties>();
-    }
+        switch (state)
+        {
+            case AttackState.Gun:
+                GunProperties gunProps = GetComponentInChildren<GunProperties>();
+                firePoint = gunProps.firePoint;
+                props = gunProps;
+                break;
 
-    public void Attack()
-    {
-        currentState.Attack(this, props);
-    }
+            case AttackState.Ax:
+                firePoint = null;
+                props = GetComponentInChildren<AxProperties>();
+                break;
+        }
 
+    }
     public void SetTargetDetecment()
     {
-        TargetDetectment.range = props.range;
+        TargetDetectment.attackRange = props.range;
     }
-
-    //This function is called by ax animation.
     public void CallEnableAxCollider()
     {
         StartCoroutine(IEActivateAxCollider());
@@ -86,10 +148,14 @@ public class AttackStateManager : MonoBehaviour
 
     IEnumerator IEActivateAxCollider()
     {
-        axCollider.SetActive(true);
+        axCollision.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-        axCollider.SetActive(false);
-
+        axCollision.gameObject.SetActive(false);
     }
 
+    public BulletController CreateBullet()
+    {
+        BulletController bullet = Instantiate(bulletController, firePoint.position, transform.rotation);
+        return bullet;
+    } 
 }

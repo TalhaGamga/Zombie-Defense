@@ -29,14 +29,12 @@ public class WeaponController : MonoBehaviour
 
     private void Awake()
     {
-        TargetDetecment.range = weaponSO.range;
-
-
+        TargetDetecment.attackRange = weaponSO.range;
     }
 
     private void Update()
     {
-        if (TargetDetecment.targetColliders.Length > 0)
+        if (TargetDetecment.zombieColliders.Length > 0)
         {
             Fire();
         }

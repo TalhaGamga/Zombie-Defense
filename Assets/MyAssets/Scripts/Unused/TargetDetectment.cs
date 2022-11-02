@@ -6,12 +6,17 @@ using System;
 public class TargetDetectment : MonoBehaviour
 {
 
-    public float range;
-    [SerializeField] private LayerMask layerMask;
+    public float attackRange;
+    public float breakableRange = 4f;
+
+    [SerializeField] private LayerMask attackLayerMask;
+    [SerializeField] private LayerMask breakableLayerMask;
     [SerializeField] private Transform radarPoint;
 
 
-    public Collider[] targetColliders;
+    public Collider[] zombieColliders;
+    public Collider[] breakableColliders;
+
     Collider tempCollider;
     Collider closestCollider;
 
@@ -22,21 +27,25 @@ public class TargetDetectment : MonoBehaviour
         targetPos.position = Vector3.forward * 5 + transform.position.y * Vector3.up;
     }
 
-    private void OnDrawGizmos() 
+    private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(radarPoint.transform.position, range);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(radarPoint.transform.position, attackRange);
+
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(radarPoint.transform.position, breakableRange);
     }
 
     void FixedUpdate()
     {
-        targetColliders = Physics.OverlapSphere(radarPoint.transform.position, range, layerMask);
+        zombieColliders = Physics.OverlapSphere(radarPoint.transform.position, attackRange, attackLayerMask);
+        breakableColliders = Physics.OverlapSphere(radarPoint.transform.position, breakableRange, breakableLayerMask);
         Lock();
     }
 
     void Lock()
     {
-        if (targetColliders.Length > 0)
+        if (zombieColliders.Length > 0)
         {
             targetPos.position = FindClosestCollider().transform.position;
             Vector3 direction = (targetPos.position - transform.position).normalized;
@@ -55,12 +64,12 @@ public class TargetDetectment : MonoBehaviour
 
     Collider FindClosestCollider()
     {
-        if (targetColliders.Length > 0)
+        if (zombieColliders.Length > 0)
         {
-            tempCollider = targetColliders[0];
+            tempCollider = zombieColliders[0];
         }
 
-        foreach (Collider collider in targetColliders)
+        foreach (Collider collider in zombieColliders)
         {
             if (collider != null)
             {

@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponProperties : MonoBehaviour
+[System.Serializable]
+public abstract class WeaponPropertiesBase : MonoBehaviour
 {
     public AttackState state;
 
@@ -17,7 +18,7 @@ public class WeaponProperties : MonoBehaviour
 
     public WeaponScriptableObject weaponSO;
 
-    private void OnEnable()
+    public void OnEnable()
     {
         state = weaponSO.state;
         range = weaponSO.range;
@@ -30,6 +31,10 @@ public class WeaponProperties : MonoBehaviour
         pickUpScale = weaponSO.pickUpScale;
     }
 
-
-
+    public void Start()
+    {
+        transform.localPosition = pickUpPos;
+        transform.localRotation = pickUpRot;
+        transform.localScale = pickUpScale; 
+    }
 }

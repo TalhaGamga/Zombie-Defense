@@ -473,13 +473,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  currentHealth:
-    baseValue: 5000
-  armor:
-    baseValue: 0
-  movementSpeed:
-    baseValue: 5
-  reattackSpeed:
-    baseValue: 3
-  damage:
-    baseValue: 10
+  currentHealth: 0
+  armor: 0
+  movementSpeed: 10
+  reattackSpeed: 1
+  damage: 5

@@ -7,17 +7,17 @@ public class UiUpgradeManager : MonoBehaviour
 
     public void MovementSpeedUp()
     {
-        stats.movementSpeed.SetValue(stats.movementSpeed.GetValue() * 1.2f);
+        stats.movementSpeed=(stats.movementSpeed * 1.2f);
     }
 
     public void AttackSpeedUp()
     {
-        stats.reattackSpeed.SetValue(stats.reattackSpeed.GetValue() * 0.8f);
+        stats.reattackSpeed=(stats.reattackSpeed * 0.8f);
     }
-
+     
     public void AttackPowerUp()
     {
-        float previousDmg = PlayerManager.Instance.stats.damage.GetValue();
-        PlayerManager.Instance.stats.damage.SetValue(previousDmg * 1.2f);
+        float previousDmg = PlayerManager.Instance.stats.damage;
+        PlayerManager.Instance.stats.damage=previousDmg * 1.2f;
     }
 }

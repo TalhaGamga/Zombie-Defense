@@ -21,7 +21,7 @@ public class SolidState : DoorBaseState
         if (door.doorProps.CurrentHp <= 0)
         {
             door.doorObj.SetActive(false);
-            door.SwitchState(DoorState.broken);
+            door.SwitchState(DoorState.Broken);
         }
     }
 

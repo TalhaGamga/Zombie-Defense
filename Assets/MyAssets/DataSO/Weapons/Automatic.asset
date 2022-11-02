@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea843608aea22f542914a2c7d595f366, type: 3}
   m_Name: Automatic
   m_EditorClassIdentifier: 
-  range: 20
+  state: 0
+  range: 10
   reattackTime: 0.1
-  damage: 5
-  price: 2500
+  damage: 10
+  price: 3500
   itemInfo: Automatic Gun
-  pickUpPos: {x: 0.0654, y: 0.1557, z: 0.0995}
-  pickupRot: {x: 279.86618, y: 316.0236, z: 96.94127}
+  pickUpPos: {x: 0.0454, y: 0.1574, z: 0.1193}
+  pickupRot: {x: 0.5651826, y: -0.23373833, z: -0.4171538, w: -0.67224824}
+  pickUpScale: {x: 0.13653038, y: 0.09439081, z: 0.13358784}

@@ -1,11 +1,18 @@
 public enum DoorState
 {
-    solid,
-    broken
+    Solid,
+    Broken
 }
 
 public enum AttackState
 {
-    gun,
+    Gun,
     Ax
+}
+
+public enum BreakablePrice
+{
+    Gold,
+    Wood,
+    Stone
 }

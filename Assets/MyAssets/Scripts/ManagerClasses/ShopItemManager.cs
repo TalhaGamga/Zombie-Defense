@@ -24,7 +24,7 @@ public class ShopItemManager : MonoBehaviour
     {
         if (PlayerManager.Instance.gold > shopItem.price)
         {
-            PlayerManager.Instance.stats.movementSpeed.SetValue(PlayerManager.Instance.stats.movementSpeed.GetValue() * 1.2f);
+            PlayerManager.Instance.stats.movementSpeed= PlayerManager.Instance.stats.movementSpeed* 1.2f;
 
             UiManager.Instance.SetGoldOnMarket(shopItem.price);
 
@@ -38,7 +38,7 @@ public class ShopItemManager : MonoBehaviour
         if (PlayerManager.Instance.gold > shopItem.price)
         {
 
-            PlayerManager.Instance.stats.reattackSpeed.SetValue(PlayerManager.Instance.stats.reattackSpeed.GetValue() * 0.8f);
+            PlayerManager.Instance.stats.reattackSpeed= PlayerManager.Instance.stats.reattackSpeed * 0.8f;
 
 
             UiManager.Instance.SetGoldOnMarket(shopItem.price);
@@ -51,8 +51,8 @@ public class ShopItemManager : MonoBehaviour
         if (PlayerManager.Instance.gold > shopItem.price)
         {
 
-            float previousDmg = PlayerManager.Instance.stats.damage.GetValue();
-            PlayerManager.Instance.stats.damage.SetValue(previousDmg * 1.2f);
+            float previousDmg = PlayerManager.Instance.stats.damage;
+            PlayerManager.Instance.stats.damage = previousDmg * 1.2f;
 
 
             UiManager.Instance.SetGoldOnMarket(shopItem.price);
@@ -65,10 +65,10 @@ public class ShopItemManager : MonoBehaviour
     {
         if (PlayerManager.Instance.gold > shopItem.price)
         {
-            float currentArmor = PlayerManager.Instance.stats.armor.GetValue();
+            float currentArmor = PlayerManager.Instance.stats.armor;
             float upgradedArmor = currentArmor * 1.2f;
 
-            PlayerManager.Instance.stats.armor.SetValue(upgradedArmor);
+            PlayerManager.Instance.stats.armor= upgradedArmor;
 
             UiManager.Instance.SetGoldOnMarket(shopItem.price);
 

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 399053477930163381}
   m_Layer: 0
-  m_Name: 'targetPoint '
+  m_Name: targetPoint 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,7 +144,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 5, y: 0.5702}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &7929665589266715569
 CanvasGroup:
@@ -414,7 +414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foregroundImage: {fileID: 7929665590103836404}
-  stateManager: {fileID: 6579270682019284938}
+  doorStateManager: {fileID: 0}
 --- !u!1 &8197107556154406880
 GameObject:
   m_ObjectHideFlags: 0

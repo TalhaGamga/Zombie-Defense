@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea843608aea22f542914a2c7d595f366, type: 3}
   m_Name: Ax
   m_EditorClassIdentifier: 
-  range: 6
-  reattackTime: 1
-  damage: 20
-  price: 500
+  state: 0
+  range: 4
+  reattackTime: 0.5
+  damage: 60
+  price: 1800
   itemInfo: Ax
   pickUpPos: {x: -0.017, y: 0.072, z: 0.008}
-  pickupRot: {x: 282.60675, y: 30.610418, z: 5.393114}
+  pickupRot: {x: 0.5926627, y: -0.23415159, z: -0.20025727, w: -0.7441914}
+  pickUpScale: {x: 0.25000003, y: 0.36740032, z: 0.31584632}

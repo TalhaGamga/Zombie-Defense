@@ -8,10 +8,11 @@ public class Stat
     [SerializeField]
     private float baseValue;
 
-    public float GetValue()
+    public float GetValue() 
     {
         return baseValue;
-    }
+    } 
+
     public void SetValue(float value)
     {
         baseValue = value;

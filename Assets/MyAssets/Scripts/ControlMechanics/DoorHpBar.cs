@@ -2,26 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class DoorHpBar : MonoBehaviour
+public class DoorHpBar : HpBarBase
 {
     [SerializeField]
-    private Image foregroundImage;
-    [SerializeField]
-    private DoorStateManager stateManager;
+    private DoorStateManager doorStateManager;
 
     private void Awake()
     {
-        stateManager.OnHpPctChanged += HandleHpChanged;
+        doorStateManager.OnHpPctChanged += HandleHpChanged;
     }
 
-    private void HandleHpChanged(float pct)
-    {
-        ChangeToPct(pct);
-    }
+    //private void HandleHpChanged(float pct)
+    //{
+    //    ChangeToPct(pct);
+    //}
 
-    private void ChangeToPct(float pct)
-    {
-        float preChangePct = foregroundImage.fillAmount;
-        foregroundImage.fillAmount = pct;
-    }
+    //private void ChangeToPct(float pct)
+    //{
+    //    float preChangePct = foregroundImage.fillAmount;
+    //    foregroundImage.fillAmount = pct;
+    //} 
 }

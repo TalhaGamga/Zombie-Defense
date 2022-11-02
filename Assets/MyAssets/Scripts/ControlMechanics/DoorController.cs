@@ -16,7 +16,7 @@ public class DoorController : MonoBehaviour
 
     private void OnEnable()
     {
-        currentState = DoorState.solid;
+        currentState = DoorState.Solid;
     }
 
     private void Awake()
@@ -34,14 +34,14 @@ public class DoorController : MonoBehaviour
 
     public void Hit(int hit)
     {
-        if (currentState == DoorState.solid)
+        if (currentState == DoorState.Solid)
         {
             currentHealth -= hit;
             OnHpPctChanged(currentHealth / maxHealth);
 
             if (currentHealth < 1)
             {
-                currentState = DoorState.broken;
+                currentState = DoorState.Broken;
                 KillDoor();//error
             }
         }
