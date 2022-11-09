@@ -10,7 +10,7 @@ public enum AttackState
     Ax
 }
 
-public enum BreakablePrice
+public enum PriceType
 {
     Gold,
     Wood,

@@ -6,6 +6,6 @@ public class ZombieStats : CharacterStats
     public override void Die()
     {
         base.Die();
-        DropManager.Instance.DropGold(gameObject.transform);
+        DropManager.Instance.DropPrice(PriceType.Gold, gameObject.transform.position);
     }
 }

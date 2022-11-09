@@ -29,7 +29,6 @@ public class AttackStateManager : MonoBehaviour
     [Header("General Weapon Props")]
     public float raTime;
 
-
     public Animator playerAnim
     {
         get
@@ -88,16 +87,14 @@ public class AttackStateManager : MonoBehaviour
                 attackState = AttackState.Gun;
                 currentState = gunAttackState;
                 currentState.EnterState(this);
-
-
+                TargetDetectment.InitLockFunc(state);//
                 break;
 
             case AttackState.Ax:
                 attackState = AttackState.Ax;
                 currentState = axAttackState;
                 currentState.EnterState(this);
-
-
+                TargetDetectment.InitLockFunc(state);//
                 break;
         }
     }
@@ -109,12 +106,14 @@ public class AttackStateManager : MonoBehaviour
             case AttackState.Gun:
                 attackState = AttackState.Gun;
                 currentState = gunAttackState;
+                TargetDetectment.InitLockFunc(state);//
                 currentState.EnterState(this);
                 break;
 
             case AttackState.Ax:
                 attackState = AttackState.Ax;
                 currentState = axAttackState;
+                TargetDetectment.InitLockFunc(state);//
                 currentState.EnterState(this);
                 break;
         }
@@ -139,7 +138,7 @@ public class AttackStateManager : MonoBehaviour
     }
     public void SetTargetDetecment()
     {
-        TargetDetectment.attackRange = props.range;
+        TargetDetectment.range = props.range;
     }
     public void CallEnableAxCollider()
     {
@@ -157,5 +156,5 @@ public class AttackStateManager : MonoBehaviour
     {
         BulletController bullet = Instantiate(bulletController, firePoint.position, transform.rotation);
         return bullet;
-    } 
+    }
 }

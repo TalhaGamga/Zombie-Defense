@@ -8,4 +8,3 @@ public abstract class CharacterAttackBaseState : ICharacterAttack
     public abstract void Attack(AttackStateManager attack);
     public abstract void OnCollisionEnter(AttackStateManager attack, Collision collision);
 }
- 

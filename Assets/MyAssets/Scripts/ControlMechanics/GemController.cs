@@ -19,8 +19,9 @@ public class GemController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            UiManager.Instance.SetGoldOnCollect(price);
-            UiManager.Instance.CallIEPlayPopUpGold(price);
+            //UiManager.Instance.SetPriceOnCollect(price);
+            //UiManager.Instance.CallIEPlayPopUpGold(price);
+            UiManager.Instance.SetPrice(PriceType.Gold, price);
             Destroy(gameObject);
         }
     }

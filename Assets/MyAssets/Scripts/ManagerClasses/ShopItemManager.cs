@@ -20,61 +20,63 @@ public class ShopItemManager : MonoBehaviour
         priceText.text = price.ToString();
     }
 
-    public void MovementSpeedUp()
-    {
-        if (PlayerManager.Instance.gold > shopItem.price)
-        {
-            PlayerManager.Instance.stats.movementSpeed= PlayerManager.Instance.stats.movementSpeed* 1.2f;
 
-            UiManager.Instance.SetGoldOnMarket(shopItem.price);
+    //public void MovementSpeedUp()
+    //{
+    //    if (PlayerManager.Instance.gold > shopItem.price)
+    //    {
+    //        PlayerManager.Instance.stats.movementSpeed= PlayerManager.Instance.stats.movementSpeed* 1.2f;
 
-            UpdatePrice();
-        }
+    //        UiManager.Instance.SetGoldOnMarket(shopItem.price);
 
-    }
+    //        UpdatePrice();
+    //    }
 
-    public void AttackSpeedUp()
-    {
-        if (PlayerManager.Instance.gold > shopItem.price)
-        {
+    //}
 
-            PlayerManager.Instance.stats.reattackSpeed= PlayerManager.Instance.stats.reattackSpeed * 0.8f;
+    //public void AttackSpeedUp()
+    //{
+    //    if (PlayerManager.Instance.gold > shopItem.price)
+    //    {
 
-
-            UiManager.Instance.SetGoldOnMarket(shopItem.price);
-            UpdatePrice();
-        }
-    }
-
-    public void AttackPowerUp()
-    {
-        if (PlayerManager.Instance.gold > shopItem.price)
-        {
-
-            float previousDmg = PlayerManager.Instance.stats.damage;
-            PlayerManager.Instance.stats.damage = previousDmg * 1.2f;
+    //        PlayerManager.Instance.stats.reattackSpeed= PlayerManager.Instance.stats.reattackSpeed * 0.8f;
 
 
-            UiManager.Instance.SetGoldOnMarket(shopItem.price);
+    //        UiManager.Instance.SetGoldOnMarket(shopItem.price);
+    //        UpdatePrice();
+    //    }
+    //}
 
-            UpdatePrice();
-        }
-    }
+    //public void AttackPowerUp()
+    //{
+    //    if (PlayerManager.Instance.gold > shopItem.price)
+    //    {
 
-    public void ArmorUp()
-    {
-        if (PlayerManager.Instance.gold > shopItem.price)
-        {
-            float currentArmor = PlayerManager.Instance.stats.armor;
-            float upgradedArmor = currentArmor * 1.2f;
+    //        float previousDmg = PlayerManager.Instance.stats.damage;
+    //        PlayerManager.Instance.stats.damage = previousDmg * 1.2f;
 
-            PlayerManager.Instance.stats.armor= upgradedArmor;
 
-            UiManager.Instance.SetGoldOnMarket(shopItem.price);
+    //        UiManager.Instance.SetGoldOnMarket(shopItem.price);
 
-            UpdatePrice();
-        }
-    }
+    //        UpdatePrice();
+    //    }
+    //}
+
+    //public void ArmorUp()
+    //{
+    //    if (PlayerManager.Instance.gold > shopItem.price)
+    //    {
+    //        float currentArmor = PlayerManager.Instance.stats.armor;
+    //        float upgradedArmor = currentArmor * 1.2f;
+
+    //        PlayerManager.Instance.stats.armor= upgradedArmor;
+
+    //        UiManager.Instance.SetGoldOnMarket(shopItem.price);
+
+    //        UpdatePrice();
+    //    }
+    //}
+
     void UpdatePrice()
     {
         price *= 2;

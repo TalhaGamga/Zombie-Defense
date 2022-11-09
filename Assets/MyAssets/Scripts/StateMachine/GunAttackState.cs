@@ -17,6 +17,7 @@ public class GunAttackState : CharacterAttackBaseState
         attack.gun.SetActive(true);
 
         attack.GetProps(attack.attackState);
+
         attack.SetTargetDetecment();
 
         reattackTime = attack.props.reattackTime;
@@ -48,13 +49,12 @@ public class GunAttackState : CharacterAttackBaseState
     {
         //if (collision.gameObject.TryGetComponent<>)
         //{
-
         //}
     }
 
     public Vector3 GetShootDir(AttackStateManager attack)
     {
-        attack.shootDir = (attack.TargetDetectment.targetPos.position - attack.firePoint.position).normalized;
+        attack.shootDir = (attack.TargetDetectment.crossPos.position - attack.firePoint.position).normalized;
         return attack.shootDir;
     }
 }

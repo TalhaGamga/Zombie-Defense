@@ -29,18 +29,18 @@ public class EquipmentShopItemController : MonoBehaviour
 
     public void BuyWeapon()
     {
-        if (PlayerManager.Instance.gold > price)
-        {
-            GameObject weapon = Instantiate(weaponPrefab, PlayerManager.Instance.player.transform);
-            weapon.transform.localPosition = weaponSO.pickUpPos;
+        //if (PlayerManager.Instance.gold > price)
+        //{
+        //    GameObject weapon = Instantiate(weaponPrefab, PlayerManager.Instance.player.transform);
+        //    weapon.transform.localPosition = weaponSO.pickUpPos;
 
-            Destroy(PlayerManager.Instance.equippedItem);
+        //    Destroy(PlayerManager.Instance.equippedItem);
 
-            PlayerManager.Instance.equippedItem = weapon;
+        //    PlayerManager.Instance.equippedItem = weapon;
 
-            UiManager.Instance.SetGoldOnMarket(price);
+        //    UiManager.Instance.SetGoldOnMarket(price);
 
-            button.SetActive(false);
-        }
+        //    button.SetActive(false);
+        //}
     }
 }

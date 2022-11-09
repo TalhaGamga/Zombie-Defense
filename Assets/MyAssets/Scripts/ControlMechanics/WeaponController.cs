@@ -29,7 +29,7 @@ public class WeaponController : MonoBehaviour
 
     private void Awake()
     {
-        TargetDetecment.attackRange = weaponSO.range;
+        TargetDetecment.range = weaponSO.range;
     }
 
     private void Update()
@@ -47,7 +47,7 @@ public class WeaponController : MonoBehaviour
         if (timer > weaponSO.reattackTime)
         {
             BulletController bullet = Instantiate(bulletController, transform.position, transform.rotation);
-            shootDir = (TargetDetecment.targetPos.position - transform.position).normalized;
+            shootDir = (TargetDetecment.crossPos.position - transform.position).normalized;
             bullet.shootDir = shootDir;
             bullet.damage = weaponSO.damage;
             timer = 0;

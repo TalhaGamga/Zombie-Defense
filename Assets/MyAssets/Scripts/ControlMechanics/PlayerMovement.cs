@@ -33,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-
         if (!isMovable)
         {
             return;
@@ -46,12 +45,11 @@ public class PlayerMovement : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, layerMask))
             {
                 direction = (raycastHit.point - transform.position).normalized;
-                if (targetDetecment.zombieColliders.Length < 1)
+                if (!targetDetecment.closestCollider)
                 {
                     var rot = Quaternion.LookRotation(direction, Vector3.up);
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 720 * Time.deltaTime);
                 }
-
             }
 
             Run();

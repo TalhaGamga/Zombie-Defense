@@ -8,8 +8,13 @@ public class AxCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent<ZombieStats>(out ZombieStats stats))
+        if (collision.gameObject.TryGetComponent<StatBase>(out StatBase stats))
         {
+            if (stats.gameObject == PlayerManager.Instance.player)
+            {
+                return;
+            }
+
             stats.TakeDamage(damage);
         }
     }

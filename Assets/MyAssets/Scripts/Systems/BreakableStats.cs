@@ -1,28 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class BreakableStats : StatBase
 {
-    [SerializeField] private BreakableScriptableObject breakableSO;
-    [SerializeField] private float price;
+    [SerializeField] private PriceTypeScriptableObject priceTypeSO;
 
-    void OnEnable()
+    PriceType priceType;
+    ObjectPooler objectPooler;
+
+    Transform collectPoint;
+    private void Start()
     {
-        maxHealth = breakableSO.Hp;
+        priceType = priceTypeSO.priceType;
+        currentHealth = maxHealth;
+
+        objectPooler = ObjectPooler.Instance;
+        collectPoint = PlayerManager.Instance.collectPoint;
     }
 
     public override void Die()
     {
-        base.Die();
-
-        //Drop Price
+        objectPooler.CallCollectPrices(priceType.ToString(), transform.position, Quaternion.identity, collectPoint);
+        Destroy(gameObject);
     }
-    void Update()
+
+    public override void TakeDamage(float damage)
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        currentHealth -= damage;
+
+        ChangeToPct(currentHealth, maxHealth);
+
+        Vector3 preScale = transform.localScale;
+
+        transform.DOScale(preScale + Vector3.one * 0.2f, .1f).OnComplete(() => transform.DOScale(preScale, .1f));
+
+        if (currentHealth <= 0)
         {
-            base.TakeDamage(10);
+            Die();
         }
     }
 }

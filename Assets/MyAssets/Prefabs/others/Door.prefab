@@ -414,7 +414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foregroundImage: {fileID: 7929665590103836404}
-  doorStateManager: {fileID: 0}
+  doorStateManager: {fileID: 6579270682019284938}
 --- !u!1 &8197107556154406880
 GameObject:
   m_ObjectHideFlags: 0

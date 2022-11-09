@@ -11,10 +11,6 @@ public abstract class StatBase : MonoBehaviour, IStat
     public float maxHealth = 100;
     public float currentHealth;
 
-    private void Awake()
-    {
-        currentHealth = maxHealth;
-    }
     public virtual void TakeDamage(float damage)
     {
         currentHealth -= damage;
