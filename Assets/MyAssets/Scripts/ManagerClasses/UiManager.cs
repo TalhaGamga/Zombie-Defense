@@ -23,7 +23,7 @@ public class UiManager : Singleton<UiManager>
         SetPriceUi(tag);
     }
 
-    void SetPriceUi(PriceType tag)
+    public void SetPriceUi(PriceType tag)
     {
         playerManager.priceDict[tag].SetPriceUi();
     }

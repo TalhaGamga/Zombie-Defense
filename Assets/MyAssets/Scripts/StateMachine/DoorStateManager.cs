@@ -9,23 +9,31 @@ public class DoorStateManager : MonoBehaviour
     private SolidState solidState = new SolidState();
     private BrokenState brokenState = new BrokenState();
 
-    public event Action<float> OnHpPctChanged = delegate { };
+    //public Action<float> OnHpPctChanged = delegate { };
 
-    [SerializeField] public DoorProperties doorProps;
-    [SerializeField] public GameObject doorObj;
+    //public DoorProperties doorProps;
+    public GameObject doorObj;
 
-    [SerializeField] public ZombieSpawnManager zombieSpawnManager;
+    public ZombieSpawnManager zombieSpawnManager;
+
+    [SerializeField]
+    public DoorStats stats;
 
     public float timer = 0;
     Coroutine _IEOnBase;
     Coroutine _IELeftOnBase;
 
+    Coroutine IEFix;
+
+    public Transform interactPoint;
     private void OnEnable()
     {
-        currentState = solidState;
+        currentState = brokenState;
+        currentState.EnterState(this);
     }
-    private void Start()
+    private void Awake()
     {
+        stats.SwitchStateOnHpFull += SwitchState;
     }
     void Update()
     {
@@ -38,6 +46,7 @@ public class DoorStateManager : MonoBehaviour
         {
             case DoorState.Solid:
                 currentState = solidState;
+                currentState.EnterState(this);
                 break;
 
             case DoorState.Broken:
@@ -46,13 +55,13 @@ public class DoorStateManager : MonoBehaviour
                 break;
         }
     }
-     
+
     public void Hit(float hit)
     {
         if (doorObj)
         {
-            currentState.Hit(this, doorProps, hit, doorObj);
-            OnHpPctChanged((doorProps.CurrentHp - hit) / doorProps.MaxHp);
+            currentState.Hit(this, stats, hit, doorObj);
+            stats.ChangeToPct(stats.currentHp, stats.maxHp);
         }
     }
 
@@ -65,57 +74,37 @@ public class DoorStateManager : MonoBehaviour
         currentState.OnCollisionExit(this, collision);
     }
 
-    public void CallIEOnBase()
+
+    IEnumerator IEEnteredBase()
     {
-        if (_IELeftOnBase != null)
+        while (PlayerManager.Instance.priceDict[PriceType.Wood].currentPrice > 0 && stats.currentHp < stats.maxHp)
         {
-            StopCoroutine(_IELeftOnBase);
+            Collectable collectable = ObjectPooler.Instance.SpawnFromPool(PriceType.Wood.ToString(), PlayerManager.Instance.collectPoint.position, Quaternion.identity).GetComponent<Collectable>();
+            collectable.PushToDoor(interactPoint, this);
+            yield return new WaitForSeconds(.2f);
         }
 
-        _IEOnBase = StartCoroutine(IEOnBase());
+        if (stats.currentHp == stats.maxHp)
+        {
+            SwitchState(DoorState.Solid);
+            currentState.EnterState(this);
+        }
     }
 
-    public void CallIELeftOnBase()
+
+    public void CallIEEnteredBase()
     {
-        StopCoroutine(_IEOnBase);
-        _IELeftOnBase = StartCoroutine(IELeftOnBase());
+         IEFix = StartCoroutine(IEEnteredBase());
     }
 
-    IEnumerator IEOnBase()
+    public void StopIEEnteredBase()
     {
-        while (timer < doorProps.MaxHp)
+        if (IEFix == null)
         {
-            timer += Time.deltaTime;
-            doorProps.CurrentHp = timer;
-            OnHpPctChanged(timer / doorProps.MaxHp);
-            yield return null;
+            return;
         }
 
-        StopCoroutine(_IEOnBase);
-
-        SwitchState(DoorState.Solid);
-        currentState.EnterState(this);
-    }
-
-    IEnumerator IELeftOnBase()
-    {
-        StopCoroutine(IEOnBase());
-        while (timer < doorProps.HalfHp && timer > 0)
-        {
-            timer -= Time.deltaTime;
-            doorProps.CurrentHp = timer;
-            OnHpPctChanged(timer / doorProps.MaxHp);
-            yield return null;
-        }
-
-        while (timer > doorProps.HalfHp && timer < doorProps.MaxHp)
-        {
-            timer -= Time.deltaTime;
-            doorProps.CurrentHp = timer;
-            OnHpPctChanged(timer / doorProps.MaxHp);
-            yield return null;
-        }
-
-        StopAllCoroutines();
+        StopCoroutine(IEFix);
+        IEFix = null;
     }
 }

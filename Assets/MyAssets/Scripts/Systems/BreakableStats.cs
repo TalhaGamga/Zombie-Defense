@@ -13,7 +13,7 @@ public class BreakableStats : StatBase
     private void Start()
     {
         priceType = priceTypeSO.priceType;
-        currentHealth = maxHealth;
+        currentHp = maxHp;
 
         objectPooler = ObjectPooler.Instance;
         collectPoint = PlayerManager.Instance.collectPoint;
@@ -27,15 +27,15 @@ public class BreakableStats : StatBase
 
     public override void TakeDamage(float damage)
     {
-        currentHealth -= damage;
+        currentHp -= damage;
 
-        ChangeToPct(currentHealth, maxHealth);
+        ChangeToPct(currentHp, maxHp);
 
         Vector3 preScale = transform.localScale;
 
         transform.DOScale(preScale + Vector3.one * 0.2f, .1f).OnComplete(() => transform.DOScale(preScale, .1f));
 
-        if (currentHealth <= 0)
+        if (currentHp <= 0)
         {
             Die();
         }

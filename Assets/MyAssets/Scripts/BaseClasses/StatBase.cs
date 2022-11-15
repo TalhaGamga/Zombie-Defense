@@ -8,16 +8,16 @@ public abstract class StatBase : MonoBehaviour, IStat
 {
     public event Action<float> OnHpPctChanged;
 
-    public float maxHealth = 100;
-    public float currentHealth;
+    public float maxHp = 100;
+    public float currentHp;
 
     public virtual void TakeDamage(float damage)
     {
-        currentHealth -= damage;
+        currentHp -= damage;
 
-        ChangeToPct(currentHealth, maxHealth);
+        ChangeToPct(currentHp, maxHp);
 
-        if (currentHealth <= 0)
+        if (currentHp <= 0)
         {
             Die();
         }
@@ -28,9 +28,8 @@ public abstract class StatBase : MonoBehaviour, IStat
         Destroy(gameObject);
     }
 
-    public void ChangeToPct(float currentHealth, float maxHealth)
+    public virtual void ChangeToPct(float currentHealth, float maxHealth)
     {
         OnHpPctChanged?.Invoke(currentHealth / maxHealth);
     }
 }
-

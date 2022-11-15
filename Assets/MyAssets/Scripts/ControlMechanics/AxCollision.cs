@@ -10,11 +10,6 @@ public class AxCollision : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<StatBase>(out StatBase stats))
         {
-            if (stats.gameObject == PlayerManager.Instance.player)
-            {
-                return;
-            }
-
             stats.TakeDamage(damage);
         }
     }

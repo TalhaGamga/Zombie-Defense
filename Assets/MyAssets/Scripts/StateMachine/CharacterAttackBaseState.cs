@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public abstract class CharacterAttackBaseState : ICharacterAttack
+public abstract class CharacterAttackBaseState : ICharacterAttackState
 {
-    public abstract void EnterState(AttackStateManager attack);
-    public abstract void UpdateState(AttackStateManager attack);
-    public abstract void Attack(AttackStateManager attack);
-    public abstract void OnCollisionEnter(AttackStateManager attack, Collision collision);
+    public abstract void EnterState(AttackStateManagerBase attack);
+    public abstract void UpdateState(AttackStateManagerBase attack);
+    public abstract void Attack(AttackStateManagerBase attack);
+    public abstract void OnCollisionEnter(AttackStateManagerBase attack, Collision collision);
 }

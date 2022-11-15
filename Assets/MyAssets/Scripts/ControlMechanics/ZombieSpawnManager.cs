@@ -35,7 +35,7 @@ public class ZombieSpawnManager : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
-        if (doorStateManager.doorProps.CurrentHp > 0)
+        if (doorStateManager.stats.currentHp> 0)
         {
             OnSettingTarget?.Invoke(doorTargetPoint); //Make here automatic (target setter etc.)
         }

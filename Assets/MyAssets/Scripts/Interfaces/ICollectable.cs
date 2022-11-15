@@ -6,5 +6,5 @@ public interface ICollectable
 {
     public void Collect();
 
-    public void Use();
+    public void PushToDoor(Transform target, DoorStateManager door);
 }

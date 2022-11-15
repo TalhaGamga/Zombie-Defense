@@ -37,6 +37,7 @@ public class Price
     public void SetPrice(float price)
     {
         currentPrice += price;
+        SetPriceUi();
     }
 
     public void SetPriceUi()

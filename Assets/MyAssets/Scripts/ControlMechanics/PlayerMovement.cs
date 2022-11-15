@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
 
             Run();
 
-            transform.Translate(Vector3.Lerp(Vector3.zero, direction * stats.movementSpeed * Time.deltaTime, 1), Space.World);
+            transform.Translate(Vector3.Lerp(Vector3.zero, direction * stats.movementSpeed * stats.speedMultier * Time.deltaTime, 1), Space.World);
         }
 
         else

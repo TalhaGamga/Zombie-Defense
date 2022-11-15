@@ -38,24 +38,22 @@ public class TargetDetectment : MonoBehaviour
         LockFunc();
     }
 
-    
+
     void GunLock()
     {
         GunScan();
-
+         
         GunFindClosestCollider();
-
         if (!closestCollider)
         {
-            crossPos.transform.localPosition = new Vector3(0, 0.4f, 1);
+            crossPos.transform.localPosition = Vector3.Lerp(crossPos.transform.localPosition, new Vector3(0, 0.2f, 1),0.5f);
             return;
         }
 
         crossPos.position = closestCollider.transform.position;
         Vector3 direction = (crossPos.position - transform.position).normalized;
 
-        var rot = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 1440 * Time.deltaTime);
+        transform.forward = new Vector3(direction.x, 0, direction.z) * Time.deltaTime;
     }
 
     void GunFindClosestCollider()
@@ -112,7 +110,8 @@ public class TargetDetectment : MonoBehaviour
             {
                 if (collider != null)
                 {
-                    if (Vector3.Distance(collider.transform.position, transform.position) < Vector3.Distance(tempCollider.transform.position, transform.position))
+                    if (Vector3.Distance(collider.transform.position, transform.position) <
+                        Vector3.Distance(tempCollider.transform.position, transform.position))
                     {
                         tempCollider = collider;
                     }
@@ -132,7 +131,8 @@ public class TargetDetectment : MonoBehaviour
                 {
                     if (collider != null)
                     {
-                        if (Vector3.Distance(collider.transform.position, transform.position) < Vector3.Distance(tempCollider.transform.position, transform.position))
+                        if (Vector3.Distance(collider.transform.position, transform.position) <
+                            Vector3.Distance(tempCollider.transform.position, transform.position))
                         {
                             tempCollider = collider;
                         }

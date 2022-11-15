@@ -7,7 +7,7 @@ public abstract class DoorBaseState
 {
     public abstract void EnterState(DoorStateManager door);
     public abstract void UpdateState(DoorStateManager door);
-    public abstract void Hit(DoorStateManager door, DoorProperties doorProp, float hit, GameObject doorObj);
+    public abstract void Hit(DoorStateManager door, DoorStats stats, float hit, GameObject doorObj);
     public abstract void FixDoor(DoorStateManager door);
     public abstract void OnCollisionEnter(DoorStateManager door, Collision collision);
 

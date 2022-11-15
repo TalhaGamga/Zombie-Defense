@@ -7,18 +7,17 @@ public class SolidState : DoorBaseState
     public override void EnterState(DoorStateManager door)
     {
         door.doorObj.SetActive(true);
-        door.doorProps.CurrentHp = door.doorProps.MaxHp;
-    }
+    } 
 
     public override void FixDoor(DoorStateManager door)
     {
     }
 
-    public override void Hit(DoorStateManager door, DoorProperties doorProps, float hit, GameObject doorObj)
+    public override void Hit(DoorStateManager door, DoorStats stats, float hit, GameObject doorObj)
     {
-        doorProps.CurrentHp -= hit;
+        stats.TakeDamage(hit);
 
-        if (door.doorProps.CurrentHp <= 0)
+        if (stats.currentHp<= 0)
         {
             door.doorObj.SetActive(false);
             door.SwitchState(DoorState.Broken);

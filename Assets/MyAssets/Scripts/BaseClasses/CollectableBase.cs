@@ -17,8 +17,19 @@ public abstract class CollectableBase : MonoBehaviour, ICollectable
         OnComplete(() => gameObject.SetActive(false));
     }
 
-    public void Use()
+    public void PushToDoor(Transform target, DoorStateManager door)
     {
-        throw new System.NotImplementedException();
+        PlayerManager.Instance.bagObj.DOPunchScale(Vector3.one*0.15f, 0.2f, 1, 1);
+        transform.DOLocalMove(target.position, 0.5f).
+
+            OnStepComplete(() =>    
+            {
+                door.stats.currentHp++;
+                door.stats.ChangeToPct(door.stats.currentHp, door.stats.maxHp);
+            })
+
+            .OnComplete(() => gameObject.SetActive(false));
+        PlayerManager.Instance.priceDict[PriceType.Wood].SetPrice(-1);
+
     }
 }

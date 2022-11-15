@@ -1,12 +1,13 @@
 using System;
 using UnityEngine;
-public abstract class CharacterStats : StatBase
+public class CharacterStats : StatBase
 {
 
     //public int maxHealth = 100;
     //public float currentHealth { get; private set; }
 
     //public float currentHealth;
+    public float speedMultier = 1;
     public float armor;
     public float movementSpeed;
     public float reattackSpeed;
@@ -14,18 +15,18 @@ public abstract class CharacterStats : StatBase
 
     private void Awake()
     {
-        currentHealth = maxHealth;
+        currentHp = maxHp;
     }
 
     public override void TakeDamage(float _damage)
     {
         _damage = Mathf.Clamp(_damage, 0, int.MaxValue);
         _damage -= armor;
-        currentHealth -= _damage;
+        currentHp -= _damage;
 
-        ChangeToPct(currentHealth, maxHealth); //From StatBase
+        ChangeToPct(currentHp, maxHp); //From StatBase
 
-        if (currentHealth <= 0)
+        if (currentHp <= 0)
         {
             Die();
         }

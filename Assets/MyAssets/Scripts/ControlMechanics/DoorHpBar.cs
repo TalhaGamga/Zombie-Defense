@@ -9,7 +9,7 @@ public class DoorHpBar : HpBarBase
 
     private void Awake()
     {
-        doorStateManager.OnHpPctChanged += HandleHpChanged;
+        doorStateManager.stats.OnHpPctChanged += HandleHpChanged;
     }
 
     //private void HandleHpChanged(float pct)

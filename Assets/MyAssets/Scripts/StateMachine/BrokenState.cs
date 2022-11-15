@@ -5,15 +5,18 @@ public class BrokenState : DoorBaseState
 {
     public override void EnterState(DoorStateManager door)
     {
+        door.stats.currentHp= 0;
+        door.doorObj.SetActive(false);
+
         door.timer = 0;
-        door.zombieSpawnManager.OnSettingTarget(PlayerManager.Instance.player);
+        //door.zombieSpawnManager.OnSettingTarget(PlayerManager.Instance.player);
     }
 
     public override void FixDoor(DoorStateManager door)
     {
         //throw new System.NotImplementedException();
     }
-    public override void Hit(DoorStateManager door, DoorProperties doorProp, float hit, GameObject doorObj)
+    public override void Hit(DoorStateManager door, DoorStats stats, float hit, GameObject doorObj)
     {
         //throw new System.NotImplementedException();
     }
@@ -25,18 +28,22 @@ public class BrokenState : DoorBaseState
     public override void OnCollisionEnter(DoorStateManager door, Collision collision)
     {
 
-        if (collision.gameObject.TryGetComponent<PlayerMovement>(out PlayerMovement movement))
+        if (collision.gameObject.TryGetComponent<PlayerStats>(out PlayerStats stats))
         {
-            door.CallIEOnBase();
+            //door.CallIEOnBase();
+
+            door.CallIEEnteredBase(); 
+            //GameObject wood = ObjectPooler.Instance.SpawnFromPool(PriceType.Wood.ToString(), PlayerManager.Instance.collectPoint.position, Quaternion.identity);
+            //wood.GetComponent<ICollectable>().PushToDoor(door.transform,door);
         }
     }
 
     public override void OnCollisionExit(DoorStateManager door, Collision collision)
     {
 
-        if (collision.gameObject.TryGetComponent<PlayerMovement>(out PlayerMovement movement))
+        if (collision.gameObject.TryGetComponent<PlayerStats>(out PlayerStats stats))
         {
-            door.CallIELeftOnBase();
+            door.StopIEEnteredBase();
         }
     }
 }

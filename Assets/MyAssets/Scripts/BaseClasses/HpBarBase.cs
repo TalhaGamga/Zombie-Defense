@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public abstract class HpBarBase : MonoBehaviour
 {
     public Image foregroundImage;
+
     public virtual void HandleHpChanged(float pct)
     {
         ChangeToPct(pct);
@@ -14,7 +15,6 @@ public abstract class HpBarBase : MonoBehaviour
 
     public virtual void ChangeToPct(float pct)
     {
-        float preChangePct = foregroundImage.fillAmount;
         foregroundImage.fillAmount = pct;
     }
 }
