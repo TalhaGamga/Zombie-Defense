@@ -114,17 +114,17 @@ public abstract class AttackStateManagerBase : MonoBehaviour
     {
         TargetDetectment.range = props.range;
     }
-    public void CallEnableAxCollider()
-    {
-        StartCoroutine(IEActivateAxCollider());
-    }
+    //public void CallEnableAxCollider()
+    //{
+    //    StartCoroutine(IEActivateAxCollider());
+    //}
 
-    IEnumerator IEActivateAxCollider()
-    {
-        axCollision.gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        axCollision.gameObject.SetActive(false);
-    }
+    //IEnumerator IEActivateAxCollider()
+    //{
+    //    axCollision.gameObject.SetActive(true);
+    //    yield return new WaitForSeconds(0.5f);
+    //    axCollision.gameObject.SetActive(false);
+    //}
 
     public BulletController CreateBullet()
     {

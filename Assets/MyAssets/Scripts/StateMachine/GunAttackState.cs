@@ -54,7 +54,7 @@ public class GunAttackState : CharacterAttackBaseState
 
     public Vector3 GetShootDir(AttackStateManagerBase attack)
     {
-        attack.shootDir = (attack.TargetDetectment.crossPos.position - attack.firePoint.position).normalized;
+        attack.shootDir = (attack.TargetDetectment.crossPos.position - attack.firePoint.position + Vector3.up).normalized;
         return attack.shootDir;
     }
 }

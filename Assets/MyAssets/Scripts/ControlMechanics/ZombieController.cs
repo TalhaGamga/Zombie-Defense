@@ -6,27 +6,20 @@ using System;
 public class ZombieController : MonoBehaviour
 {
     NavMeshAgent navMeshAgent;
-    public GameObject target; 
-
-    private Animator anim; 
-
-    Coroutine _IEAttackToDoor;
+    public GameObject target;
 
     [SerializeField] private ZombieStats stats;
 
     public event Action<float> OnHpPctChanged = delegate { };
 
+    Animator anim;
+    AnimationEvent punchEvent;
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.speed = stats.movementSpeed;
         GetComponentInParent<ZombieSpawnManager>().OnSettingTarget += SetTarget;
-    }
-
-    void Start()
-    {
-        /*anim = GetComponent<Animator>()*/
-        //target = GameObject.Find("Player").transform;
+        anim = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -47,82 +40,54 @@ public class ZombieController : MonoBehaviour
         }
 
         navMeshAgent.SetDestination(target.transform.position);
-
-        //if (Vector3.Distance(target.position, transform.position) > navMeshAgent.stoppingDistance)
-        //{
-        //    Run();
-        //}
-
-        //else
-        //{
-        //    Idle();
-        //}
     }
-
-    //private void Idle()
-    //{
-    //    anim.SetFloat("Speed", 0, 0.2f, Time.deltaTime); 
-    //}
-
-    //private void Run()
-    //{
-    //    anim.SetFloat("Speed", 1f, 0.2f, Time.deltaTime);
-    //}
-
-    //private void OnCollisionStay(Collision collision) //ERROR IS HEREEEE! ! ! !
-    //{
-    //    //if (collision.gameObject.TryGetComponent<DoorController>(out DoorController doorController))
-    //    //{
-    //    //    if (doorController == null)
-    //    //    {
-    //    //        return;
-    //    //    }
-
-    //    //    if (timer > 3)
-    //    //    {
-    //    //        AttackToDoor(doorController);//error
-    //    //        timer = 0;
-    //    //    }
-    //    //    //Debug.Log(timer);
-
-    //    //    timer += Time.deltaTime;
-    //    //}
-    //}
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent<DoorStateManager>(out DoorStateManager doorStateManager))
+        if (collision.gameObject.TryGetComponent<BuildingStatBase>(out BuildingStatBase buildingStatBase))
         {
-            _IEAttackToDoor = StartCoroutine(IEAttackToDoor(doorStateManager));
-        }
+            anim.SetTrigger("Attack");
 
-        if (collision.gameObject.TryGetComponent<PlayerStats>(out PlayerStats playerStats))
+        }
+        if (collision.gameObject.TryGetComponent<CharacterStats>(out CharacterStats characterStats))
         {
-            playerStats.TakeDamage(stats.damage);
+            anim.SetTrigger("Attack");
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    if (collision.gameObject.TryGetComponent<DoorStateManager>(out DoorStateManager doorStateManager))
+    //    {
+    //        StopCoroutine(_IEAttackToDoor);
+    //    }
+    //}
+    //void AttackToDoor(DoorStateManager targetDoor)
+    //{
+    //    if (targetDoor == null)
+    //    {
+    //        return;
+    //    }
+    //    targetDoor.Hit(stats.damage / 10);
+    //}
+
+    IEnumerator IEAttackToDoor(StatBase stats, float damage)
     {
-        if (collision.gameObject.TryGetComponent<DoorStateManager>(out DoorStateManager doorStateManager))
+        while (stats != null)
         {
-            StopCoroutine(_IEAttackToDoor);
+            //Hit(stats, damage);
+            yield return null;
         }
     }
-    void AttackToDoor(DoorStateManager targetDoor) //ERROR IS HEREEEEE! ! ! !
-    {
-        if (targetDoor == null)
-        {
-            return;
-        }
-        targetDoor.Hit(stats.damage/ 10);
-    }
-    IEnumerator IEAttackToDoor(DoorStateManager doorStateManager)
-    { 
-        while (doorStateManager != null)
-        {
-            AttackToDoor(doorStateManager);
-            yield return new WaitForSeconds(stats.reattackSpeed);
-        }
-    }
+
+
+    //public void Hit(StatBase stats, float damage)
+    //{ 
+    //    punchEvent.objectReferenceParameter = stats.gameObject;
+    //    punchEvent.floatParameter = this.stats.damage;
+    //    Debug.Log(punchEvent.floatParameter);
+    //    Debug.Log(punchEvent);
+
+    //    anim.SetTrigger("Attack");
+    //}
 }

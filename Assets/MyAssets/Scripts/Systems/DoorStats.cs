@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class DoorStats : StatBase
+public class DoorStats : BuildingStatBase
 {
-    public Action<DoorState> SwitchStateOnHpFull;
+    public Action<DoorState> OnSwitchState;
 
     private void Start()
     {
-        //currentHealth = maxHealth;
         ChangeToPct(currentHp, maxHp);
     }
 
     public override void Die()
     {
-        Debug.Log("doorStats die ' ý");
-        return;
+        OnSwitchState(DoorState.Broken);
     }
 
     public override void ChangeToPct(float currentHealth, float maxHealth)
@@ -25,7 +23,7 @@ public class DoorStats : StatBase
 
         if (currentHealth == maxHealth)
         {
-            SwitchStateOnHpFull?.Invoke(DoorState.Solid);
+            OnSwitchState?.Invoke(DoorState.Solid);
         }
     }
 

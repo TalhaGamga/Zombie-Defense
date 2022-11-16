@@ -9,7 +9,7 @@ public class BrokenState : DoorBaseState
         door.doorObj.SetActive(false);
 
         door.timer = 0;
-        //door.zombieSpawnManager.OnSettingTarget(PlayerManager.Instance.player);
+        door.zombieSpawnManager.OnSettingTarget(PlayerManager.Instance.player);
     }
 
     public override void FixDoor(DoorStateManager door)

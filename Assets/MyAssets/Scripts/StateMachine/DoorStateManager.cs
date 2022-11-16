@@ -9,9 +9,6 @@ public class DoorStateManager : MonoBehaviour
     private SolidState solidState = new SolidState();
     private BrokenState brokenState = new BrokenState();
 
-    //public Action<float> OnHpPctChanged = delegate { };
-
-    //public DoorProperties doorProps;
     public GameObject doorObj;
 
     public ZombieSpawnManager zombieSpawnManager;
@@ -20,20 +17,18 @@ public class DoorStateManager : MonoBehaviour
     public DoorStats stats;
 
     public float timer = 0;
-    Coroutine _IEOnBase;
-    Coroutine _IELeftOnBase;
 
     Coroutine IEFix;
 
     public Transform interactPoint;
     private void OnEnable()
     {
-        currentState = brokenState;
+        currentState = solidState;
         currentState.EnterState(this);
     }
     private void Awake()
     {
-        stats.SwitchStateOnHpFull += SwitchState;
+        stats.OnSwitchState += SwitchState;
     }
     void Update()
     {
@@ -56,15 +51,6 @@ public class DoorStateManager : MonoBehaviour
         }
     }
 
-    public void Hit(float hit)
-    {
-        if (doorObj)
-        {
-            currentState.Hit(this, stats, hit, doorObj);
-            stats.ChangeToPct(stats.currentHp, stats.maxHp);
-        }
-    }
-
     public void OnCollisionEnter(Collision collision)
     {
         currentState.OnCollisionEnter(this, collision);
@@ -81,7 +67,7 @@ public class DoorStateManager : MonoBehaviour
         {
             Collectable collectable = ObjectPooler.Instance.SpawnFromPool(PriceType.Wood.ToString(), PlayerManager.Instance.collectPoint.position, Quaternion.identity).GetComponent<Collectable>();
             collectable.PushToDoor(interactPoint, this);
-            yield return new WaitForSeconds(.2f);
+            yield return new WaitForSeconds(.1f);
         }
 
         if (stats.currentHp == stats.maxHp)
