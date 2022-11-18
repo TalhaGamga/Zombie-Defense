@@ -23,7 +23,7 @@ public class DoorStateManager : MonoBehaviour
     public Transform interactPoint;
     private void OnEnable()
     {
-        currentState = solidState;
+        currentState = brokenState;
         currentState.EnterState(this);
     }
     private void Awake()

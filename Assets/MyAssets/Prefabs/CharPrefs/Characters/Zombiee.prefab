@@ -80,7 +80,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7697207186439558917
 Transform:
   m_ObjectHideFlags: 0
@@ -759,8 +759,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.193449, y: 7.0049505, z: 2.5703707}
-  m_Center: {x: 0, y: 2.1883826, z: 0.5}
+  m_Size: {x: 3.1939373, y: 5.0049505, z: 1.4299762}
+  m_Center: {x: 0, y: 2.1883826, z: 0.070197254}
 --- !u!114 &2988937183974932578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -787,10 +787,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f7782b0e9730e44ba14fa3a4cd919f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 250
+  maxHp: 200
   currentHp: 0
   speedMultier: 1
-  armor: 0
+  armor: 16.69
   movementSpeed: 5
   reattackSpeed: 1
   damage: 5

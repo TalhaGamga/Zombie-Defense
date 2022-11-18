@@ -21,7 +21,7 @@ public class AxAttackState : CharacterAttackBaseState
 
     public override void Attack(AttackStateManagerBase attack)
     {
-        attack.playerAnim.SetTrigger("AxAttack");
+        attack.playerAnim.SetTrigger("AxAttack"); 
     }
 
     public override void UpdateState(AttackStateManagerBase attack)
