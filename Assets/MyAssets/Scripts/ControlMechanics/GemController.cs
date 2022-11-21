@@ -21,7 +21,8 @@ public class GemController : MonoBehaviour
         {
             //UiManager.Instance.SetPriceOnCollect(price);
             //UiManager.Instance.CallIEPlayPopUpGold(price);
-            UiManager.Instance.SetPrice(PriceType.Gold, price);
+            //UiManager.Instance.SetPrice(PriceType.Gold, price);
+            EventManager.OnSettingPrice?.Invoke(PriceType.Gold, price);
             Destroy(gameObject);
         }
     }

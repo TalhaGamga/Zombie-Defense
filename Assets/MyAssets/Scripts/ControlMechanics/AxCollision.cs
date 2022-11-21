@@ -10,15 +10,13 @@ public class AxCollision : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<StatBase>(out StatBase stats))
         {
-            stats.TakeDamage(damage);
-            ContactPoint contact = collision.contacts[0];
-            if (collision.gameObject.CompareTag("Zombie"))
-            {
 
-                Vector3 pushDir = (collision.transform.position - contact.point).normalized;
-                pushDir.y = 0;
-                collision.transform.DOMove(collision.transform.position + pushDir * 10f, 0.2f);
-            }
+            ContactPoint contact = collision.contacts[0];
+            Vector3 shotDir = (collision.transform.position - contact.point).normalized;
+            shotDir.y = 0;
+
+            stats.shotDir = shotDir;
+            stats.TakeDamage(damage);
         }
     }
 }

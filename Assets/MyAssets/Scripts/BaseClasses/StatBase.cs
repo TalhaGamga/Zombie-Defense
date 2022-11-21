@@ -6,10 +6,18 @@ using UnityEngine;
 [System.Serializable]
 public abstract class StatBase : MonoBehaviour, IStat
 {
+    public GameObject hpBarObj;
     public event Action<float> OnHpPctChanged;
 
     public float maxHp = 100;
     public float currentHp;
+
+    public Vector3 shotDir;
+
+    private void Awake()
+    {
+        currentHp = maxHp;
+    }
 
     public virtual void TakeDamage(float damage)
     {
@@ -25,6 +33,7 @@ public abstract class StatBase : MonoBehaviour, IStat
 
     public virtual void Die()
     {
+        hpBarObj.SetActive(false);
         Destroy(gameObject);
     }
 

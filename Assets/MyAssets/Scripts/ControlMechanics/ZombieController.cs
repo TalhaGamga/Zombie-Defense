@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using System;
-public class ZombieController : MonoBehaviour
+public class ZombieController : CharacterControllerBase
 {
     NavMeshAgent navMeshAgent;
     public GameObject target;
@@ -12,14 +12,12 @@ public class ZombieController : MonoBehaviour
 
     public event Action<float> OnHpPctChanged = delegate { };
 
-    Animator anim;
-    AnimationEvent punchEvent;
+    [SerializeField] Animator anim;
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.speed = stats.movementSpeed;
         GetComponentInParent<ZombieSpawnManager>().OnSettingTarget += SetTarget;
-        anim = GetComponentInChildren<Animator>();
     }
 
     void Update()

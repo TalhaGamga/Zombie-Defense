@@ -5,7 +5,6 @@ using System;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float runSpeed;
     [SerializeField] private Camera camera;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private PlayerStats stats;
@@ -16,15 +15,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator anim;
 
     [SerializeField] private TargetDetectment targetDetecment;
-    private void Awake()
+
+    private void OnEnable()
     {
-        PlayerManager.Instance.OnPanelOpenedOrClosed += ChangeIsMovable;
+        EventManager.OnPlayingGame += Movable;
+        EventManager.OnStoppingGame += DisMovable;
+
     }
 
-    private void Start()
+    private void OnDisable()
     {
-        //anim = GetComponentInChildren<Animator>();
-
+        EventManager.OnPlayingGame -= Movable;
+        EventManager.OnStoppingGame -= DisMovable;
     }
     private void Update()
     {
@@ -51,7 +53,6 @@ public class PlayerMovement : MonoBehaviour
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 720 * Time.deltaTime);
                 }
             }
-
             Run();
 
             transform.Translate(Vector3.Lerp(Vector3.zero, direction * stats.movementSpeed * stats.speedMultier * Time.deltaTime, 1), Space.World);
@@ -62,22 +63,6 @@ public class PlayerMovement : MonoBehaviour
             Idle();
         }
     }
-
-    private void ChangeIsMovable()
-    {
-        if (isMovable == true)
-        {
-            isMovable = false;
-            return;
-        }
-
-        if (isMovable == false)
-        {
-            isMovable = true;
-            return;
-        }
-    }
-
     private void Idle()
     {
         anim.SetFloat("Speed", 0, 0.1f, Time.deltaTime);
@@ -86,5 +71,16 @@ public class PlayerMovement : MonoBehaviour
     private void Run()
     {
         anim.SetFloat("Speed", 1f, 0.1f, Time.deltaTime);
+    }
+
+    void Movable()
+    {
+        isMovable = true;
+    }
+
+    void DisMovable()
+    {
+        isMovable = false;
+        anim.SetFloat("Speed", 0, 0, 1);
     }
 }

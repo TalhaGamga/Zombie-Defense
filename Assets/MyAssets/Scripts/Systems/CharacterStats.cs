@@ -1,8 +1,8 @@
 using System;
+using System.Collections;
 using UnityEngine;
 public class CharacterStats : StatBase
 {
-
     //public int maxHealth = 100;
     //public float currentHealth { get; private set; }
 
@@ -13,10 +13,10 @@ public class CharacterStats : StatBase
     public float reattackSpeed;
     public float damage;
 
-    private void Awake()
-    {
-        currentHp = maxHp;
-    }
+    //private void Awake()
+    //{
+    //    currentHp = maxHp;
+    //}
 
     public override void TakeDamage(float _damage)
     {

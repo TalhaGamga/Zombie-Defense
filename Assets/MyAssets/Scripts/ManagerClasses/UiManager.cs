@@ -11,6 +11,16 @@ public class UiManager : Singleton<UiManager>
 
     PlayerManager playerManager;
 
+    private void OnEnable()
+    {
+        EventManager.OnSettingPrice += SetPrice;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.OnSettingPrice -= SetPrice;
+    }
+
     private void Start()
     {
         playerManager = PlayerManager.Instance;
@@ -31,11 +41,13 @@ public class UiManager : Singleton<UiManager>
     public void OpenMarket()
     {
         UiMarket.gameObject.SetActive(true);
-        PlayerManager.Instance.OnPanelOpenedOrClosed();
+        //PlayerManager.Instance.OnPanelOpenedOrClosed();
+        EventManager.OnStoppingGame?.Invoke();
     }
     public void CloseMarket()
     {
         UiMarket.gameObject.SetActive(false);
-        PlayerManager.Instance.OnPanelOpenedOrClosed();
+        //PlayerManager.Instance.OnPanelOpenedOrClosed();
+        EventManager.OnPlayingGame?.Invoke();
     }
 }

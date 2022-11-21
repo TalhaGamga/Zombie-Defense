@@ -11,7 +11,8 @@ public abstract class CollectableBase : MonoBehaviour, ICollectable
         transform.DOLocalMove(Vector3.zero, 0.5f).
         OnStepComplete(() =>
         {
-            UiManager.Instance.SetPrice(priceTypeSO.priceType, 1);
+            //UiManager.Instance.SetPrice(priceTypeSO.priceType, 1);
+            EventManager.OnSettingPrice(priceTypeSO.priceType, 1);
             transform.SetParent(ObjectPooler.Instance.parent);
         }).
         OnComplete(() => gameObject.SetActive(false));
