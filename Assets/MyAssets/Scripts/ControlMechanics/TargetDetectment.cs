@@ -38,15 +38,14 @@ public class TargetDetectment : MonoBehaviour
         LockFunc();
     }
 
-
     void GunLock()
     {
         GunScan();
-         
+
         GunFindClosestCollider();
         if (!closestCollider)
         {
-            crossPos.transform.localPosition = Vector3.Lerp(crossPos.transform.localPosition, new Vector3(0, 0.2f, 1),0.5f);
+            crossPos.transform.localPosition = Vector3.Lerp(crossPos.transform.localPosition, new Vector3(0, 0.2f, 1), 0.5f);
             return;
         }
 

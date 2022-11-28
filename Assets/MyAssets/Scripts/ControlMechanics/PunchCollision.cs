@@ -9,11 +9,11 @@ public class PunchCollision : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<BuildingStatBase>(out BuildingStatBase buildingStatBase))
         {
-            buildingStatBase.TakeDamage(stats.damage);
+            buildingStatBase.TakeDamage(stats.damage / 5);
         }
-        if (collision.gameObject.TryGetComponent<PlayerStats>(out PlayerStats playerStats))
+        if (collision.gameObject.TryGetComponent<HumanStats>(out HumanStats humanStats))
         {
-            playerStats.TakeDamage(stats.damage);
+            humanStats.TakeDamage(stats.damage);
         }
     }
 }

@@ -12,6 +12,7 @@ public class SnapBuilding : MonoBehaviour
       
     public BuildingBase building;
 
+    BuildingBase _building;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftControl))
@@ -23,7 +24,7 @@ public class SnapBuilding : MonoBehaviour
     {
         GameManager.Instance.SwitchToBuildingCamera();
 
-        building = Instantiate(building);
+        _building = Instantiate(building);
 
         while (true)
         { 
@@ -32,15 +33,17 @@ public class SnapBuilding : MonoBehaviour
             if (Physics.Raycast(firtRay, out generalHit, float.MaxValue,groundLayer))
             {
                 var snapPos = grid.GetNearestPointOnGrid(generalHit.point);
-                building.transform.position = snapPos;
+                _building.transform.position = snapPos;
+                Debug.Log(_building.collisions.Count);
                 if (Input.GetMouseButtonDown(0))
-                { 
-                    if (Grid.replecables[snapPos] != 1)
+                {
+                    if (Grid.replecables[snapPos] < 1)
                     {
-                        if (building.CheckCollisions())
+                        if (_building.CheckCollisions())
                         {
-                            building.DoOperation();
-
+                            Debug.Log(building.CheckCollisions());
+                            _building.DoOperation();
+                            
                             Grid.replecables[snapPos] = 1;
                             GameManager.Instance.SwitchToPlayerFollowerCamera();
                             break;

@@ -7,7 +7,8 @@ public class SolidState : DoorBaseState
     public override void EnterState(DoorStateManager door)
     {
         door.doorObj.SetActive(true);
-    } 
+        door.gameObject.layer = LayerMask.NameToLayer("Building");
+    }
 
     public override void FixDoor(DoorStateManager door)
     {
@@ -15,13 +16,6 @@ public class SolidState : DoorBaseState
 
     public override void Hit(DoorStateManager door, DoorStats stats, float hit, GameObject doorObj)
     {
-        stats.TakeDamage(hit);
-
-        if (stats.currentHp<= 0)
-        {
-            door.doorObj.SetActive(false);
-            door.SwitchState(DoorState.Broken);
-        }
     }
 
     public override void OnCollisionEnter(DoorStateManager door, Collision collision)

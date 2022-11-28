@@ -2,9 +2,9 @@ using UnityEngine;
 
 public interface ICharacterAttackState 
 {
-    public void Attack(AttackStateManagerBase attack);
-    public abstract void EnterState(AttackStateManagerBase attack);
-    public abstract void UpdateState(AttackStateManagerBase attack);
-    public abstract void OnCollisionEnter(AttackStateManagerBase attack, Collision collision);
+    public void Attack(AttackStateManager attack);
+    public abstract void EnterState(AttackStateManager attack);
+    public abstract void UpdateState(AttackStateManager attack);
+    public abstract void OnCollisionEnter(AttackStateManager attack, Collision collision);
 }
  

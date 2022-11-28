@@ -31,6 +31,5 @@ public abstract class CollectableBase : MonoBehaviour, ICollectable
 
             .OnComplete(() => gameObject.SetActive(false));
         PlayerManager.Instance.priceDict[PriceType.Wood].SetPrice(-1);
-
     }
 }

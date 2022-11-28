@@ -5,7 +5,6 @@ using System;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private Camera camera;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private PlayerStats stats;
 
@@ -20,7 +19,6 @@ public class PlayerMovement : MonoBehaviour
     {
         EventManager.OnPlayingGame += Movable;
         EventManager.OnStoppingGame += DisMovable;
-
     }
 
     private void OnDisable()
@@ -42,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, layerMask))
             {
@@ -62,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Idle();
         }
-    }
+    } 
     private void Idle()
     {
         anim.SetFloat("Speed", 0, 0.1f, Time.deltaTime);

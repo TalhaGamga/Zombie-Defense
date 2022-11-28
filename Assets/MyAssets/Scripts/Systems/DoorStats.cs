@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class DoorStats : StatBase
+public class DoorStats : BuildingStatBase
 {
     public Action<DoorState> OnSwitchState;
 
@@ -14,6 +14,7 @@ public class DoorStats : StatBase
 
     public override void Die()
     {
+        //hpBarObj.SetActive(false);
         OnSwitchState(DoorState.Broken);
     }
 

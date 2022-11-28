@@ -3,36 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class TargetDetecmentConst
+public class TargetDetecmentConst : MonoBehaviour
 {
     public float range;
     public LayerMask scanLayer;
-    public Vector3 radarPoint;
+    public Transform radarPoint;
 
     public Collider[] colliders;
 
     Collider tempCollider;
     Collider closestCollider;
-    public TargetDetecmentConst(float range, LayerMask layerMask, Vector3 radarPoint)
+    public TargetDetecmentConst(float range, LayerMask layerMask, Transform radarPoint)
     {
         this.range = range;
         this.scanLayer = layerMask;
         this.radarPoint = radarPoint;
     }
 
-    public void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(radarPoint, range);
-    }
-
     public void Scan()
     {
-        colliders = Physics.OverlapSphere(radarPoint, range, scanLayer);
+        colliders= Physics.OverlapSphere(radarPoint.position, range, scanLayer);
+
     }
 
     public Collider FindClosestCollider()
     {
+        Scan();
         if (colliders.Length > 0)
         {
             tempCollider = colliders[0];
@@ -41,8 +37,8 @@ public class TargetDetecmentConst
             {
                 if (collider != null)
                 {
-                    if (Vector3.Distance(collider.transform.position, radarPoint) <
-                        Vector3.Distance(tempCollider.transform.position, radarPoint))
+                    if (Vector3.Distance(collider.transform.position, radarPoint.position) <
+                        Vector3.Distance(tempCollider.transform.position, radarPoint.position))
                     {
                         tempCollider = collider;
                     }

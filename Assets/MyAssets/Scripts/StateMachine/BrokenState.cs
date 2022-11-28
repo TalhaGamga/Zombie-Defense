@@ -7,9 +7,10 @@ public class BrokenState : DoorBaseState
     {
         door.stats.currentHp= 0;
         door.doorObj.SetActive(false);
-
-        door.timer = 0;
         //door.zombieSpawnManager.OnSettingTarget(PlayerManager.Instance.player);
+        door.stats.ChangeToPct(door.stats.currentHp, door.stats.maxHp);
+        door.gameObject.layer = LayerMask.NameToLayer("BrokenDoor");
+         
     }
 
     public override void FixDoor(DoorStateManager door)

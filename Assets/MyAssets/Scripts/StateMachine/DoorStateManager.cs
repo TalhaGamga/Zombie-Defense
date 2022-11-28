@@ -16,20 +16,25 @@ public class DoorStateManager : MonoBehaviour
     [SerializeField]
     public DoorStats stats;
 
-    public float timer = 0;
-
     Coroutine IEFix;
 
     public Transform interactPoint;
+
+    public DoorState doorState;
     private void OnEnable()
-    {
-        currentState = brokenState;
-        currentState.EnterState(this);
-    }
-    private void Awake()
     {
         stats.OnSwitchState += SwitchState;
     }
+    private void OnDisable()
+    {
+        stats.OnSwitchState -= SwitchState;
+    }
+     
+    private void Start()
+    {
+        SwitchState(doorState);
+    }
+
     void Update()
     {
 

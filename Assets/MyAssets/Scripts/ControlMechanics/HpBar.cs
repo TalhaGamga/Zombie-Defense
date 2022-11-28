@@ -20,20 +20,8 @@ public class HpBar : HpBarBase
         }
     }
 
-    Camera mainCamera;
-
     private void Awake()
     {
         Stats.OnHpPctChanged += HandleHpChanged;
-    }
-
-    private void Start()
-    {
-        mainCamera = GameManager.Instance.mainCamera;
-    }
-    private void Update()
-    {
-        Vector3 direction = (mainCamera.transform.position - transform.position).normalized;
-        transform.forward = new Vector3(0, direction.y, direction.z);
     }
 }

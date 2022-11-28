@@ -34,7 +34,7 @@ public abstract class StatBase : MonoBehaviour, IStat
     public virtual void Die()
     {
         hpBarObj.SetActive(false);
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 
     public virtual void ChangeToPct(float currentHealth, float maxHealth)

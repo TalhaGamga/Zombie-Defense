@@ -35,15 +35,15 @@ public class ZombieSpawnManager : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
-        if (doorStateManager.stats.currentHp> 0)
-        {
-            OnSettingTarget?.Invoke(doorTargetPoint); //Make here automatic (target setter etc.)
-        }
+        //if (doorStateManager.stats.currentHp> 0)
+        //{
+        //    OnSettingTarget?.Invoke(doorTargetPoint); //Make here automatic (target setter etc.)
+        //}
 
-        else
-        {
-            OnSettingTarget?.Invoke(PlayerManager.Instance.player);
-        }
+        //else
+        //{
+        //    OnSettingTarget?.Invoke(PlayerManager.Instance.player);
+        //}
 
     }
 }

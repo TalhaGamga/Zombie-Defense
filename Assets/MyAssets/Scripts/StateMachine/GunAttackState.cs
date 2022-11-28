@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunAttackState : CharacterAttackBaseState
+public class GunAttackState : AttackBaseState
 {
     float timer;
     float reattackTime;
-    public override void EnterState(AttackStateManagerBase attack)
+    public override void EnterState(AttackStateManager attack)
     {
         attack.axHolderRig.weight = 0;
         attack.gunHolderRig.weight = 1;
@@ -25,7 +25,7 @@ public class GunAttackState : CharacterAttackBaseState
         timer = 0;
     }
 
-    public override void Attack(AttackStateManagerBase attack)
+    public override void Attack(AttackStateManager attack)
     {
         timer += Time.deltaTime;
         if (timer > reattackTime)
@@ -37,7 +37,7 @@ public class GunAttackState : CharacterAttackBaseState
         }
     }
 
-    public override void UpdateState(AttackStateManagerBase attack)
+    public override void UpdateState(AttackStateManager attack)
     {
         if (attack.TargetDetectment.zombieColliders.Length > 0)
         {
@@ -45,14 +45,14 @@ public class GunAttackState : CharacterAttackBaseState
         }
     }
 
-    public override void OnCollisionEnter(AttackStateManagerBase attack, Collision collision)
+    public override void OnCollisionEnter(AttackStateManager attack, Collision collision)
     {
         //if (collision.gameObject.TryGetComponent<>)
         //{
         //}
     }
 
-    public Vector3 GetShootDir(AttackStateManagerBase attack)
+    public Vector3 GetShootDir(AttackStateManager attack)
     {
         attack.shootDir = (attack.TargetDetectment.crossPos.position - attack.firePoint.position + Vector3.up).normalized;
         return attack.shootDir;

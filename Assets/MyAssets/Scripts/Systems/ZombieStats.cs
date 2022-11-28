@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using DG.Tweening;
-public class ZombieStats : CharacterStats
+public class ZombieStats : EnemyStats
 {
     public NavMeshAgent navMeshAgent;
     public CharacterControllerBase characterController;
     public SkinnedMeshRenderer charRenderer;
     public Material diedMat;
-
-    Color killColor;
 
     public override void Die()
     {
@@ -34,25 +32,18 @@ public class ZombieStats : CharacterStats
 
     void CallIEDie()
     {
-        //navMeshAgent.Stop();
         navMeshAgent.isStopped = true;
         GetComponent<Rigidbody>().isKinematic = true;
         GetComponent<Collider>().enabled = false;
-        hpBarObj.SetActive(false);
+        hpBarObj.SetActive(false); 
 
         characterController.enabled = false;
 
-        //charRenderer.material = diedMat;
-        //charRenderer.material.color = Color.Lerp(charRenderer.material.color, Color.gray,0.1f);
-
-        //DOTween.To(() => charRenderer.material.color, x => charRenderer.material.color = x, Color.gray, 1.5f);
-        //killColor = Color.gray;
-        //DOTween.To(() => charRenderer.material.color, x => charRenderer.material.color = x, Color.gray, 5f);
-        //DOTween.To(() => killColor.a, x => killColor.a = x, 0, 5f);
+        Destroy(charRenderer.materials[1]);
+        Destroy(charRenderer.materials[2]);
+        
         charRenderer.material.DOColor(diedMat.color, 5f);
-        //GetComponentInChildren<SkinnedMeshRenderer>().material.DOFade(0, 5f);
-        //charRenderer.material.DO
-
+      
         StartCoroutine(IEDie());
     }
 

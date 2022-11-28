@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class AxAttackState : CharacterAttackBaseState
+public class AxAttackState : AttackBaseState
 {
-    public override void EnterState(AttackStateManagerBase attack)
+    public override void EnterState(AttackStateManager attack)
     {
         attack.gunHolderRig.weight = 0;
         attack.axHolderRig.weight = 1;
@@ -19,12 +19,12 @@ public class AxAttackState : CharacterAttackBaseState
         PlayerManager.Instance.stats.speedMultier = 1;
     }
 
-    public override void Attack(AttackStateManagerBase attack)
+    public override void Attack(AttackStateManager attack)
     {
         attack.playerAnim.SetTrigger("AxAttack"); 
     }
 
-    public override void UpdateState(AttackStateManagerBase attack)
+    public override void UpdateState(AttackStateManager attack)
     {
         if (attack.TargetDetectment.closestCollider)
         {
@@ -32,7 +32,7 @@ public class AxAttackState : CharacterAttackBaseState
         }
     }
 
-    public override void OnCollisionEnter(AttackStateManagerBase attack, Collision collision)
+    public override void OnCollisionEnter(AttackStateManager attack, Collision collision)
     {
     }
 }
