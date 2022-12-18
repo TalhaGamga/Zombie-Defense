@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.08973822, g: 0.07290542, b: 0.14557582, a: 1}
+  m_IndirectSpecularColor: {r: 0.13280655, g: 0.40138057, b: 1.0375427, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -801,10 +801,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 12be3f54b5d5ae7418ebebb497b5390e, type: 2}
 --- !u!65 &39055074
 BoxCollider:
@@ -1347,10 +1349,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!208 &92419389
 NavMeshObstacle:
@@ -2158,10 +2162,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!208 &140573568
 NavMeshObstacle:
@@ -2786,10 +2792,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!208 &185029346
 NavMeshObstacle:
@@ -4673,10 +4681,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!208 &287659074
 NavMeshObstacle:
@@ -4841,10 +4851,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d63fb1ff1fc8234a99cddc1a531f7ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 1985214311}
   maxHp: 350
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   speedMultier: 1
   armor: 0
   movementSpeed: 12
@@ -4895,6 +4907,7 @@ MonoBehaviour:
   isMovable: 1
   anim: {fileID: 5999153212896759266}
   targetDetecment: {fileID: 301312837}
+  navMesh: {fileID: 301312840}
 --- !u!54 &301312839
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4987,10 +5000,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebc5d867cb163fb4ea0109b587928161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 5935700503489412842}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   speedMultier: 1
   armor: 0
   movementSpeed: 10
@@ -5104,10 +5119,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709e2fad29477c643b8dec302970436a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 1454676659}
   maxHp: 50
   currentHp: 200
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
 --- !u!54 &338468975
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5828,6 +5845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 50
+  collectPoint: {fileID: 0}
 --- !u!114 &387082110 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2918004990956446309, guid: fb1bd7df4a3709b4a883aa5eadc1e32c, type: 3}
@@ -5857,7 +5875,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &393885568
 Transform:
@@ -6000,10 +6018,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!208 &397836923
 NavMeshObstacle:
@@ -6219,10 +6239,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 12be3f54b5d5ae7418ebebb497b5390e, type: 2}
 --- !u!208 &419466654
 NavMeshObstacle:
@@ -6561,10 +6583,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 12be3f54b5d5ae7418ebebb497b5390e, type: 2}
 --- !u!208 &459411431
 NavMeshObstacle:
@@ -6757,10 +6781,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 12be3f54b5d5ae7418ebebb497b5390e, type: 2}
 --- !u!65 &470749658
 BoxCollider:
@@ -7349,10 +7375,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!208 &503914844
 NavMeshObstacle:
@@ -8149,10 +8177,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebc5d867cb163fb4ea0109b587928161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 5935700504280131054}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   speedMultier: 1
   armor: 0
   movementSpeed: 10
@@ -8458,10 +8488,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 12be3f54b5d5ae7418ebebb497b5390e, type: 2}
 --- !u!208 &602038542
 NavMeshObstacle:
@@ -8617,10 +8649,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 12be3f54b5d5ae7418ebebb497b5390e, type: 2}
 --- !u!65 &637011827
 BoxCollider:
@@ -9093,10 +9127,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 12be3f54b5d5ae7418ebebb497b5390e, type: 2}
 --- !u!65 &668416419
 BoxCollider:
@@ -9143,6 +9179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 50
+  collectPoint: {fileID: 0}
 --- !u!135 &668801276
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9416,10 +9453,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 12be3f54b5d5ae7418ebebb497b5390e, type: 2}
 --- !u!65 &698578601
 BoxCollider:
@@ -10919,10 +10958,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 12be3f54b5d5ae7418ebebb497b5390e, type: 2}
 --- !u!65 &777776141
 BoxCollider:
@@ -10991,10 +11032,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!208 &795577126
 NavMeshObstacle:
@@ -11213,10 +11256,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 12be3f54b5d5ae7418ebebb497b5390e, type: 2}
 --- !u!208 &810153036
 NavMeshObstacle:
@@ -11639,10 +11684,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 12be3f54b5d5ae7418ebebb497b5390e, type: 2}
 --- !u!65 &870539337
 BoxCollider:
@@ -11859,10 +11906,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 12be3f54b5d5ae7418ebebb497b5390e, type: 2}
 --- !u!208 &876550511
 NavMeshObstacle:
@@ -12492,10 +12541,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!208 &936038907
 NavMeshObstacle:
@@ -13010,10 +13061,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!208 &955508114
 NavMeshObstacle:
@@ -13317,10 +13370,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!208 &965561856
 NavMeshObstacle:
@@ -13827,10 +13882,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!208 &1008381421
 NavMeshObstacle:
@@ -14262,10 +14319,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!208 &1043363847
 NavMeshObstacle:
@@ -14707,10 +14766,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!208 &1090075495
 NavMeshObstacle:
@@ -15882,10 +15943,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 12be3f54b5d5ae7418ebebb497b5390e, type: 2}
 --- !u!65 &1151120031
 BoxCollider:
@@ -16242,10 +16305,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!208 &1203207281
 NavMeshObstacle:
@@ -16400,10 +16465,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 12be3f54b5d5ae7418ebebb497b5390e, type: 2}
 --- !u!208 &1209070806
 NavMeshObstacle:
@@ -16484,10 +16551,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 12be3f54b5d5ae7418ebebb497b5390e, type: 2}
 --- !u!65 &1229859142
 BoxCollider:
@@ -16565,10 +16634,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 12be3f54b5d5ae7418ebebb497b5390e, type: 2}
 --- !u!65 &1232274315
 BoxCollider:
@@ -17167,10 +17238,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 12be3f54b5d5ae7418ebebb497b5390e, type: 2}
 --- !u!65 &1302375666
 BoxCollider:
@@ -18547,6 +18620,7 @@ MonoBehaviour:
   isMovable: 1
   anim: {fileID: 0}
   targetDetecment: {fileID: 0}
+  navMesh: {fileID: 0}
 --- !u!4 &1438928811
 Transform:
   m_ObjectHideFlags: 0
@@ -19712,10 +19786,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!208 &1486654631
 NavMeshObstacle:
@@ -22126,6 +22202,7 @@ MonoBehaviour:
   isMovable: 1
   anim: {fileID: 0}
   targetDetecment: {fileID: 1621623932}
+  navMesh: {fileID: 0}
 --- !u!195 &1621623930
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -22200,10 +22277,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d63fb1ff1fc8234a99cddc1a531f7ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   speedMultier: 1
   armor: 0
   movementSpeed: 0
@@ -22640,10 +22719,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 12be3f54b5d5ae7418ebebb497b5390e, type: 2}
 --- !u!208 &1661110345
 NavMeshObstacle:
@@ -22806,10 +22887,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!208 &1664276002
 NavMeshObstacle:
@@ -24056,10 +24139,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!208 &1742183112
 NavMeshObstacle:
@@ -24217,10 +24302,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 12be3f54b5d5ae7418ebebb497b5390e, type: 2}
 --- !u!65 &1742440261
 BoxCollider:
@@ -24600,10 +24687,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709e2fad29477c643b8dec302970436a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 99289242}
   maxHp: 50
   currentHp: 200
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
 --- !u!54 &1783613803
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -26975,10 +27064,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!208 &1975716490
 NavMeshObstacle:
@@ -28059,10 +28150,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 12be3f54b5d5ae7418ebebb497b5390e, type: 2}
 --- !u!65 &2031258269
 BoxCollider:
@@ -28140,10 +28233,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 12be3f54b5d5ae7418ebebb497b5390e, type: 2}
 --- !u!65 &2031698029
 BoxCollider:
@@ -29303,10 +29398,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 12be3f54b5d5ae7418ebebb497b5390e, type: 2}
 --- !u!208 &2104087939
 NavMeshObstacle:
@@ -29737,7 +29834,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &2133066141
 BoxCollider:
@@ -30259,10 +30356,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1210459335726583
 GameObject:
@@ -30298,10 +30397,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1210459366329554
 GameObject:
@@ -30337,10 +30438,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1210459368424294
 GameObject:
@@ -30376,10 +30479,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1210459498545227
 GameObject:
@@ -30415,10 +30520,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1210459736214332
 GameObject:
@@ -30454,10 +30561,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1210459742475196
 GameObject:
@@ -30493,10 +30602,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1210459779390817
 GameObject:
@@ -30532,10 +30643,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1210459860669022
 GameObject:
@@ -30571,10 +30684,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1210459949272791
 GameObject:
@@ -30610,10 +30725,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1210459958772073
 GameObject:
@@ -30649,10 +30766,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1210460002322808
 GameObject:
@@ -30688,10 +30807,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1210460045791023
 GameObject:
@@ -30727,10 +30848,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1210460102745990
 GameObject:
@@ -30766,10 +30889,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1210460162733181
 GameObject:
@@ -30805,10 +30930,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1210460193628743
 GameObject:
@@ -30844,10 +30971,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1210460343860542
 GameObject:
@@ -30883,10 +31012,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1210460496418101
 GameObject:
@@ -30922,10 +31053,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1210460684498579
 GameObject:
@@ -30961,10 +31094,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1210460795978324
 GameObject:
@@ -31000,10 +31135,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1210461063662523
 GameObject:
@@ -31039,10 +31176,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1210461208169367
 GameObject:
@@ -31078,10 +31217,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1210461311869376
 GameObject:
@@ -31117,10 +31258,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1490343650901731
 GameObject:
@@ -31156,10 +31299,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1490343883050117
 GameObject:
@@ -31195,10 +31340,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1490343899074173
 GameObject:
@@ -31234,10 +31381,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1490344251692178
 GameObject:
@@ -31273,10 +31422,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1490344370389844
 GameObject:
@@ -31312,10 +31463,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1490344468931651
 GameObject:
@@ -31351,10 +31504,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1490344731201357
 GameObject:
@@ -31390,10 +31545,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1490344762011754
 GameObject:
@@ -31429,10 +31586,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!1 &1490345038223397
 GameObject:
@@ -31468,10 +31627,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d4fb2f2ce11444694926f192fd1094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   priceTypeSO: {fileID: 11400000, guid: 039920efda073324088c1e1c03784a08, type: 2}
 --- !u!4 &4169168247521175
 Transform:
@@ -35605,6 +35766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  collectPoint: {fileID: 0}
 --- !u!114 &919968467543521597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38536,10 +38698,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709e2fad29477c643b8dec302970436a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
   hpBarObj: {fileID: 7159969203487505214}
   maxHp: 50
   currentHp: 200
   shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
 --- !u!54 &2278518578942609953
 Rigidbody:
   m_ObjectHideFlags: 0

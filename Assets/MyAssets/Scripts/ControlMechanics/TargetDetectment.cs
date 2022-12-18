@@ -22,9 +22,15 @@ public class TargetDetectment : MonoBehaviour
     public delegate void LockDel();
     public LockDel LockFunc;
 
+    public int zombieCollLen;
+    public int breakableColLen;
+
     private void Awake()
     {
         crossPos.position = Vector3.forward * 5 + transform.position.y * Vector3.up;
+
+        zombieColliders = new Collider[200];
+        breakableColliders = new Collider[200];
     }
 
     private void OnDrawGizmos()
@@ -57,7 +63,7 @@ public class TargetDetectment : MonoBehaviour
 
     void GunFindClosestCollider()
     {
-        if (zombieColliders.Length < 1)
+        if (zombieCollLen < 1)
         {
             closestCollider = null;
             return;
@@ -81,11 +87,12 @@ public class TargetDetectment : MonoBehaviour
 
     void GunScan()
     {
-        zombieColliders = Physics.OverlapSphere(radarPoint.transform.position, range, attackLayerMask);
+        zombieCollLen = Physics.OverlapSphereNonAlloc(radarPoint.transform.position, range, zombieColliders, attackLayerMask);
     }
 
     void AxLock()
     {
+
         AxScan();
 
         Collider axScannedCollider = AxFindClosestCollider();
@@ -96,23 +103,22 @@ public class TargetDetectment : MonoBehaviour
             var rot = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 1440 * Time.deltaTime);
         }
-
     }
 
     Collider AxFindClosestCollider()
     {
-        if (zombieColliders.Length > 0)
+        if (zombieCollLen > 0)
         {
             tempCollider = zombieColliders[0];
 
-            foreach (Collider collider in zombieColliders)
+            for (int i = 1; i < zombieCollLen; i++)
             {
-                if (collider != null)
+                if (zombieColliders[i] != null)
                 {
-                    if (Vector3.Distance(collider.transform.position, transform.position) <
-                        Vector3.Distance(tempCollider.transform.position, transform.position))
+                    if (Vector3.Distance(zombieColliders[i].transform.position, transform.position) <
+                            Vector3.Distance(tempCollider.transform.position, transform.position))
                     {
-                        tempCollider = collider;
+                        tempCollider = zombieColliders[i];
                     }
                 }
             }
@@ -122,21 +128,22 @@ public class TargetDetectment : MonoBehaviour
 
         else
         {
-            if (breakableColliders.Length > 0)
+            if (breakableColLen > 0)
             {
                 tempCollider = breakableColliders[0];
 
-                foreach (Collider collider in breakableColliders)
+                for (int i = 1; i < breakableColLen; i++)
                 {
-                    if (collider != null)
+                    if (breakableColliders[i] != null)
                     {
-                        if (Vector3.Distance(collider.transform.position, transform.position) <
-                            Vector3.Distance(tempCollider.transform.position, transform.position))
+                        if (Vector3.Distance(breakableColliders[i].transform.position, transform.position) <
+                                Vector3.Distance(tempCollider.transform.position, transform.position))
                         {
-                            tempCollider = collider;
+                            tempCollider = breakableColliders[i];
                         }
                     }
                 }
+
 
                 closestCollider = tempCollider;
             }
@@ -146,14 +153,14 @@ public class TargetDetectment : MonoBehaviour
                 closestCollider = null;
             }
         }
-
         return closestCollider;
     }
 
     void AxScan()
     {
-        breakableColliders = Physics.OverlapSphere(radarPoint.transform.position, range, breakableLayerMask);
-        zombieColliders = Physics.OverlapSphere(radarPoint.transform.position, range, attackLayerMask);
+        breakableColLen = Physics.OverlapSphereNonAlloc(radarPoint.transform.position, range, breakableColliders, breakableLayerMask);
+
+        zombieCollLen = Physics.OverlapSphereNonAlloc(radarPoint.transform.position, range, zombieColliders, attackLayerMask);
     }
 
     public void InitLockFunc(AttackState state)

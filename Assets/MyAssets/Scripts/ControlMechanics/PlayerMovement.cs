@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.AI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,7 +15,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator anim;
 
     [SerializeField] private TargetDetectment targetDetecment;
+    [SerializeField] private NavMeshAgent navMesh;
 
+    Quaternion rot;
     private void OnEnable()
     {
         EventManager.OnPlayingGame += Movable;
@@ -26,6 +29,10 @@ public class PlayerMovement : MonoBehaviour
         EventManager.OnPlayingGame -= Movable;
         EventManager.OnStoppingGame -= DisMovable;
     }
+
+    private void Start()
+    {
+    }
     private void Update()
     {
         Move();
@@ -33,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        if (!isMovable)
+        if (!isMovable) 
         {
             return;
         }
@@ -44,25 +51,25 @@ public class PlayerMovement : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, layerMask))
             {
-                direction = (raycastHit.point - transform.position).normalized;
+                direction = (raycastHit.point - transform.position).normalized; 
                 if (!targetDetecment.closestCollider)
                 {
-                    var rot = Quaternion.LookRotation(direction, Vector3.up);
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 720 * Time.deltaTime);
+                    rot = Quaternion.LookRotation(direction, Vector3.up);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, rot, 20 * Time.deltaTime);
                 }
+                navMesh.SetDestination(raycastHit.point);
             }
             Run();
-
-            transform.Translate(Vector3.Lerp(Vector3.zero, direction * stats.movementSpeed * stats.speedMultier * Time.deltaTime, 1), Space.World);
         }
 
         else
         {
+            navMesh.SetDestination(transform.position);
             Idle();
         }
-    } 
+    }
     private void Idle()
-    {
+    { 
         anim.SetFloat("Speed", 0, 0.1f, Time.deltaTime);
     }
 

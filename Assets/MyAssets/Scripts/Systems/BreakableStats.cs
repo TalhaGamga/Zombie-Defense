@@ -5,24 +5,26 @@ using DG.Tweening;
 public class BreakableStats : StatBase
 {
     [SerializeField] private PriceTypeScriptableObject priceTypeSO;
-
-    PriceType priceType;
     ObjectPooler objectPooler;
-
-    Transform collectPoint;
+    [SerializeField] GameObject livingModel;
+    [SerializeField] GameObject diedModel;
     private void Start()
     {
         priceType = priceTypeSO.priceType;
         currentHp = maxHp;
 
         objectPooler = ObjectPooler.Instance;
-        collectPoint = PlayerManager.Instance.collectPoint;
     }
 
     public override void Die()
     {
         objectPooler.CallCollectPrices(priceType.ToString(), transform.position, Quaternion.identity, collectPoint);
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.layer = LayerMask.NameToLayer("Died");
+        livingModel.SetActive(false);
+        diedModel.SetActive(true);
+
+        StartCoroutine(IEGrowUp());
     }
 
     public override void TakeDamage(float damage)
@@ -39,5 +41,16 @@ public class BreakableStats : StatBase
         {
             Die();
         }
+    }
+
+    IEnumerator IEGrowUp()
+    {
+        yield return new WaitForSeconds(10f);
+        transform.DOShakeScale(5, 0.05f,7,30,false);
+        yield return new WaitForSeconds(5f);
+        gameObject.layer = LayerMask.NameToLayer("Breakable");
+        livingModel.SetActive(true);
+        Revive();
+        diedModel.SetActive(false);
     }
 }

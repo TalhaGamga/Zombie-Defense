@@ -9,8 +9,6 @@ public class UiManager : Singleton<UiManager>
     public GameObject UiMarket;
     public Camera mainCamera;
 
-    PlayerManager playerManager;
-
     private void OnEnable()
     {
         EventManager.OnSettingPrice += SetPrice;
@@ -23,19 +21,18 @@ public class UiManager : Singleton<UiManager>
 
     private void Start()
     {
-        playerManager = PlayerManager.Instance;
     }
 
     public void SetPrice(PriceType tag, float price)
     {
-        playerManager.priceDict[tag].SetPrice(price);
+        PlayerManager.Instance.priceDict[tag].SetPrice(price);
 
         SetPriceUi(tag);
     }
 
     public void SetPriceUi(PriceType tag)
     {
-        playerManager.priceDict[tag].SetPriceUi();
+        PlayerManager.Instance.priceDict[tag].SetPriceUi();
     }
 
     public void OpenMarket()

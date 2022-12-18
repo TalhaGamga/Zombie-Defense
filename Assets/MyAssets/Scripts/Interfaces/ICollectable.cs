@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface ICollectable
 {
-    public void Collect();
+    public void Collect(Transform parent);
 
     public void PushToDoor(Transform target, DoorStateManager door);
 }

@@ -365,11 +365,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 728699953706142952}
-  - {fileID: 728699954124447482}
   - {fileID: 728699953054068364}
   - {fileID: 728699952886845577}
   m_Father: {fileID: 728699954064559025}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &728699952785566142
 BoxCollider:
@@ -417,7 +416,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
@@ -446,6 +445,8 @@ MonoBehaviour:
   breakableColliders: []
   closestCollider: {fileID: 0}
   crossPos: {fileID: 728699953251294805}
+  zombieCollLen: 0
+  breakableColLen: 0
 --- !u!114 &728699952785566137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,8 +459,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e422e627979fe5438c557dffc6eb4b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceType: 0
+  hpBarObj: {fileID: 0}
   maxHp: 100
   currentHp: 0
+  shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
   speedMultier: 1
   armor: 0
   movementSpeed: 0
@@ -480,15 +485,18 @@ MonoBehaviour:
   ax: {fileID: 5221474034055814903}
   axCollision: {fileID: 728699953054068365}
   axHolderRig: {fileID: 728699952799480585}
+  axProps: {fileID: 5802149811090318188}
   gun: {fileID: 728699953209780547}
   gunHolderRig: {fileID: 728699953147251089}
   shootDir: {x: 0, y: 0, z: 0}
   bulletController: {fileID: -8292847543380948484, guid: 6d7a05efd0f9560449a08583d6184b42, type: 3}
   firePoint: {fileID: 0}
+  gunProps: {fileID: 728699953209780557}
   parentPartOfBody: {fileID: 728699954040124201}
   attackState: 0
   raTime: 0
   props: {fileID: 0}
+  anim: {fileID: 728699953216686229}
 --- !u!1 &728699952799480591
 GameObject:
   m_ObjectHideFlags: 0
@@ -930,7 +938,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 728699952785566131}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &728699952921409223
 GameObject:
@@ -1312,7 +1320,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 728699952785566131}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &728699953054068367
 BoxCollider:
@@ -1356,6 +1364,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  collectPoint: {fileID: 728699952762566916}
+  bag: {fileID: 728699953553057499}
 --- !u!1 &728699953059571412
 GameObject:
   m_ObjectHideFlags: 0
@@ -3058,7 +3068,7 @@ Transform:
   - {fileID: 728699953727401696}
   - {fileID: 728699953720380123}
   m_Father: {fileID: 728699954064559025}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &728699953689577838
 GameObject:
@@ -4618,7 +4628,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 728699954064559025}
-  m_Layer: 0
+  - component: {fileID: 1277220966}
+  - component: {fileID: 1277220964}
+  m_Layer: 13
   m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4632,15 +4644,50 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728699954064559024}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8, y: 0, z: 12.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 728699954124447482}
   - {fileID: 728699953677418134}
   - {fileID: 728699952785566131}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1277220966
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728699954064559024}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.999939, y: 6.46, z: 6.999939}
+  m_Center: {x: 0, y: 3.2, z: 0}
+--- !u!114 &1277220964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728699954064559024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462acd8e4eb63cf448e1c7f8938e2578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priceType: 1
+  hpBarObj: {fileID: 728699954124447481}
+  maxHp: 100
+  currentHp: 0
+  shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
+  neededGold: 50
+  neededWood: 50
+  neededStone: 50
 --- !u!1 &728699954101540026
 GameObject:
   m_ObjectHideFlags: 0
@@ -4703,12 +4750,12 @@ RectTransform:
   m_LocalScale: {x: 0.5, y: 0.75, z: 1}
   m_Children:
   - {fileID: 728699953307491989}
-  m_Father: {fileID: 728699952785566131}
-  m_RootOrder: 1
+  m_Father: {fileID: 728699954064559025}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 5}
+  m_AnchoredPosition: {x: 0, y: 13.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &728699954124447461

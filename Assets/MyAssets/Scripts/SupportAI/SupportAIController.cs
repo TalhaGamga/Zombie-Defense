@@ -23,19 +23,24 @@ public class SupportAIController : CharacterControllerBase
             else
             {
                 anim.SetFloat("Speed", 1f, 0.1f, Time.deltaTime);
+            } 
+
+            if (Vector3.Distance(transform.position, navMeshAgent.steeringTarget) < navMeshAgent.stoppingDistance && targetDetecment.transformToPoint != PlayerManager.Instance.player.transform)
+            {
+                anim.SetTrigger("AxAttack");
             }
         }
     }
 
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.TryGetComponent<BreakableStats>(out BreakableStats breakableStats))
-        {
-            anim.SetTrigger("AxAttack");
-        }
-        if (collision.gameObject.TryGetComponent<ZombieStats>(out ZombieStats zombieStats))
-        {
-            anim.SetTrigger("AxAttack");
-        }
-    }
+    //private void OnCollisionStay(Collision collision)
+    //{
+    //    if (collision.gameObject.TryGetComponent<BreakableStats>(out BreakableStats breakableStats))
+    //    {
+    //        anim.SetTrigger("AxAttack");
+    //    }
+    //    if (collision.gameObject.TryGetComponent<ZombieStats>(out ZombieStats zombieStats))
+    //    {
+    //        anim.SetTrigger("AxAttack");
+    //    }
+    //}
 } 

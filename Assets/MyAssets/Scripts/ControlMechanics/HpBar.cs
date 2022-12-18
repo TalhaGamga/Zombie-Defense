@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class HpBar : HpBarBase
+public class HpBar : BarBase
 {
     [SerializeField]
     private StatBase stats;

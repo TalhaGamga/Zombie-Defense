@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 180304945789525180}
   - component: {fileID: 5694760897080337221}
   - component: {fileID: 7068515846461478511}
-  - component: {fileID: 663850183}
   - component: {fileID: 663850185}
+  - component: {fileID: 663850183}
+  - component: {fileID: 1390622901}
+  - component: {fileID: 1313382115}
   m_Layer: 13
   m_Name: ElementCreator 1
   m_TagString: Untagged
@@ -83,7 +85,7 @@ SkinnedMeshRenderer:
   m_Mesh: {fileID: 4523067675160155050, guid: 39d4efcd00bda814f9d2684228b5565a, type: 3}
   m_Bones: []
   m_BlendShapeWeights:
-  - 100
+  - 0
   m_RootBone: {fileID: 0}
   m_AABB:
     m_Center: {x: 0.4884174, y: 1.0613365, z: 0}
@@ -105,6 +107,28 @@ MonoBehaviour:
   elementCreationLimit: 300
   createdElementNum: 0
   priceSO: {fileID: 11400000, guid: a68edb8d145158e42979e1dcc336fe04, type: 2}
+  skinnedMesh: {fileID: 5694760897080337221}
+--- !u!114 &663850185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705731193638192646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462acd8e4eb63cf448e1c7f8938e2578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priceType: 0
+  hpBarObj: {fileID: 3716828632162181761}
+  maxHp: 100
+  currentHp: 0
+  shotDir: {x: 0, y: 0, z: 0}
+  collectPoint: {fileID: 0}
+  neededGold: 50
+  neededWood: 50
+  neededStone: 50
 --- !u!65 &663850183
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -118,22 +142,46 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.252892, y: 2.4560065, z: 1.1249741}
   m_Center: {x: 0.48841745, y: 0.8946699, z: 0}
---- !u!114 &663850185
-MonoBehaviour:
+--- !u!208 &1390622901
+NavMeshObstacle:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705731193638192646}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 462acd8e4eb63cf448e1c7f8938e2578, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hpBarObj: {fileID: 3716828632162181761}
-  maxHp: 100
-  currentHp: 0
-  shotDir: {x: 0, y: 0, z: 0}
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.126, y: 1.0610001, z: 0.56200004}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.48800004, y: 1.0610001, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!205 &1313382115
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705731193638192646}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
 --- !u!1001 &1454493125
 PrefabInstance:
   m_ObjectHideFlags: 0

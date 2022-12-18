@@ -10,7 +10,7 @@ public abstract class CharacterControllerBase :MonoBehaviour, ICharacterControll
 
     public Animator anim;
 
-    public ZombieAITargetDetecment targetDetecment;
+    public AITargetDetecment targetDetecment;
 
     public void Awake()
     {

@@ -12,6 +12,7 @@ public class AttackStateManager : MonoBehaviour
     public GameObject ax;
     public AxCollision axCollision;
     public Rig axHolderRig;
+    public AxProperties axProps;
 
     [Header("Gun Specials")]
     public GameObject gun;
@@ -19,6 +20,7 @@ public class AttackStateManager : MonoBehaviour
     public Vector3 shootDir;
     public BulletController bulletController;
     public Transform firePoint;
+    public GunProperties gunProps;
 
     [Header("Weapon Replecament Specials")]
     public GameObject parentPartOfBody;
@@ -28,14 +30,6 @@ public class AttackStateManager : MonoBehaviour
 
     [Header("General Weapon Props")]
     public float raTime;
-
-    public Animator playerAnim
-    {
-        get
-        {
-            return GetComponentInChildren<Animator>();
-        }
-    }
 
     [Header("Props")]
     public WeaponPropertiesBase props;
@@ -52,6 +46,16 @@ public class AttackStateManager : MonoBehaviour
             return targetDetectment;
         }
     }
+
+    [SerializeField] private Animator anim;
+    public Animator playerAnim
+    {
+        get
+        {
+            return anim;
+        }
+    }
+
     private void Start()
     {
         InitState(attackState);
@@ -124,14 +128,13 @@ public class AttackStateManager : MonoBehaviour
         switch (state)
         {
             case AttackState.Gun:
-                GunProperties gunProps = GetComponentInChildren<GunProperties>();
                 firePoint = gunProps.firePoint;
                 props = gunProps;
                 break;
 
             case AttackState.Ax:
                 firePoint = null;
-                props = GetComponentInChildren<AxProperties>();
+                props = axProps;
                 break;
         }
 

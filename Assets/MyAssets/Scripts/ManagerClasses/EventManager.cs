@@ -8,4 +8,7 @@ public static class EventManager
     public static Action OnPlayingGame;
 
     public static Action<PriceType,float> OnSettingPrice;
-}
+
+    public static Func<PlayerManager> GetPlayer;
+    public static Action<BuildingBase> OnReplaceBuilding;
+} 

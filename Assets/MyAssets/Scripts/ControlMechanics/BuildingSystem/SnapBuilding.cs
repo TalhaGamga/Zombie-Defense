@@ -8,50 +8,50 @@ public class SnapBuilding : MonoBehaviour
     [SerializeField] private Grid grid;
     [SerializeField] private LayerMask groundLayer;
 
-    public static Action<BuildingBase> OnReplaceBuilding;
-      
-    public BuildingBase building;
-
     BuildingBase _building;
-    private void Update()
+
+    private void OnEnable()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            StartCoroutine(IEDragBuilding());
-        }
+        EventManager.OnReplaceBuilding += CallIEDragBuilding;
     }
-    IEnumerator IEDragBuilding()
+
+    private void OnDisable()
     {
+        EventManager.OnReplaceBuilding -= CallIEDragBuilding;
+    }
+
+    IEnumerator IEDragBuilding(BuildingBase building)
+    {
+        EventManager.OnStoppingGame();
         GameManager.Instance.SwitchToBuildingCamera();
 
         _building = Instantiate(building);
 
         while (true)
-        { 
+        {
             RaycastHit generalHit;
             Ray firtRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(firtRay, out generalHit, float.MaxValue,groundLayer))
+            if (Physics.Raycast(firtRay, out generalHit, float.MaxValue, groundLayer))
             {
                 var snapPos = grid.GetNearestPointOnGrid(generalHit.point);
                 _building.transform.position = snapPos;
-                Debug.Log(_building.collisions.Count);
                 if (Input.GetMouseButtonDown(0))
                 {
-                    if (Grid.replecables[snapPos] < 1)
+                    if (_building.CheckCollisions())
                     {
-                        if (_building.CheckCollisions())
-                        {
-                            Debug.Log(building.CheckCollisions());
-                            _building.DoOperation();
-                            
-                            Grid.replecables[snapPos] = 1;
-                            GameManager.Instance.SwitchToPlayerFollowerCamera();
-                            break;
-                        }
+                        _building.DoOperation();
+                        GameManager.Instance.SwitchToPlayerFollowerCamera();
+                        EventManager.OnPlayingGame();
+                        break;
                     }
                 }
             }
             yield return null;
         }
+    }
+
+    public void CallIEDragBuilding(BuildingBase building)
+    {
+        StartCoroutine(IEDragBuilding(building));
     }
 }

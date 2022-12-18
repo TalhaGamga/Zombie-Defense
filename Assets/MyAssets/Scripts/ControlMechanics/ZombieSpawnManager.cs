@@ -13,10 +13,10 @@ public class ZombieSpawnManager : MonoBehaviour
 
     public Action<GameObject> OnSettingTarget;
 
-
     void Start()
     {
-        StartCoroutine(SpawnZombie());
+        //StartCoroutine(SpawnZombie());
+
     }
 
     void Update()
@@ -31,7 +31,8 @@ public class ZombieSpawnManager : MonoBehaviour
     {
         for (int i = 0; i < 10; i++)
         {
-            zombie = Instantiate(zombiePrefab, transform.position, Quaternion.identity, transform);
+            //zombie = Instantiate(zombiePrefab, transform.position, Quaternion.identity, transform);
+            zombie = ObjectPooler.Instance.SpawnFromPool("Zombie", transform.position, Quaternion.identity);
             yield return new WaitForSeconds(0.1f);
         }
 
@@ -44,6 +45,8 @@ public class ZombieSpawnManager : MonoBehaviour
         //{
         //    OnSettingTarget?.Invoke(PlayerManager.Instance.player);
         //}
-
     }
+
+
+
 }

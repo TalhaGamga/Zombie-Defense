@@ -4,5 +4,4 @@ using UnityEngine;
 
 public class HumanStats : CharacterStats
 {
-    public Transform bagObj;
 }

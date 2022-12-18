@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 public class AxAttackState : AttackBaseState
 {
     public override void EnterState(AttackStateManager attack)
@@ -21,7 +22,7 @@ public class AxAttackState : AttackBaseState
 
     public override void Attack(AttackStateManager attack)
     {
-        attack.playerAnim.SetTrigger("AxAttack"); 
+            attack.playerAnim.SetTrigger("AxAttack");
     }
 
     public override void UpdateState(AttackStateManager attack)

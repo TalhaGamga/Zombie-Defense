@@ -24,7 +24,20 @@ public class PlayerManager : Singleton<PlayerManager>
         {
             priceDict.Add(price.tag, price);
         }
+
+        EventManager.GetPlayer += GetPlayerManager;
     }
+
+    private void OnDisable()
+    {
+        EventManager.GetPlayer -= GetPlayerManager;
+    }
+
+    PlayerManager GetPlayerManager()
+    {
+        return this;
+    }
+
 }
 
 [Serializable]

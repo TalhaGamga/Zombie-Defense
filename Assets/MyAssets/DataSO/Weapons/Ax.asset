@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea843608aea22f542914a2c7d595f366, type: 3}
   m_Name: Ax
   m_EditorClassIdentifier: 
-  state: 0
+  state: 1
   range: 4
   reattackTime: 0.5
   damage: 50

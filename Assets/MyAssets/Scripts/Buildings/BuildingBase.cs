@@ -1,19 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public abstract class BuildingBase :MonoBehaviour, IBuilding
 {
-    [SerializeField]
     public List<GameObject> collisions;
     private void Awake()
     {
         collisions = new List<GameObject>();
     }
-
     public virtual void DoOperation()
     {
-        throw new System.NotImplementedException();
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -28,7 +26,11 @@ public abstract class BuildingBase :MonoBehaviour, IBuilding
     
     public bool CheckCollisions()
     {
-        Debug.Log(collisions.Count);
         return collisions.Count < 1;
+    }
+
+    public void Punch()
+    {
+        transform.DOPunchScale(Vector3.one, 0.5f, 10, 5);
     }
 }

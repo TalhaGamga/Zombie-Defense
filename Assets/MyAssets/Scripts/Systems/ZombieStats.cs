@@ -9,11 +9,17 @@ public class ZombieStats : EnemyStats
     public CharacterControllerBase characterController;
     public SkinnedMeshRenderer charRenderer;
     public Material diedMat;
+    [SerializeField] Animator anim;
 
-    public override void Die()
+    Rigidbody[] rigidBodies;
+    Collider[] colliders;
+
+    private void Start()
     {
-        base.Die();
-        DropManager.Instance.DropPrice(PriceType.Gold, gameObject.transform.position);
+        rigidBodies = transform.GetComponentsInChildren<Rigidbody>();
+        colliders = transform.GetComponentsInChildren<Collider>();
+
+        SetRagdoll(false);
     }
 
     public override void TakeDamage(float _damage)
@@ -32,28 +38,41 @@ public class ZombieStats : EnemyStats
 
     void CallIEDie()
     {
+        ObjectPooler.Instance.DropGold(transform.position, transform);
+
         navMeshAgent.isStopped = true;
         GetComponent<Rigidbody>().isKinematic = true;
         GetComponent<Collider>().enabled = false;
-        hpBarObj.SetActive(false); 
+        hpBarObj.SetActive(false);
 
         characterController.enabled = false;
 
         Destroy(charRenderer.materials[1]);
         Destroy(charRenderer.materials[2]);
-        
+
         charRenderer.material.DOColor(diedMat.color, 5f);
-      
+
         StartCoroutine(IEDie());
     }
-
 
     IEnumerator IEDie()
     {
         gameObject.layer = LayerMask.NameToLayer("Died");
-        GetComponentInChildren<Animator>().enabled = false;
+
+        SetRagdoll(true);
+
         yield return new WaitForSeconds(5f);
         Destroy(gameObject);
     }
-}
+     
+    void SetRagdoll(bool isRagdoll)
+    {
+        anim.enabled = !isRagdoll;
 
+        for (int i = 1; i < rigidBodies.Length; i++) rigidBodies[i].isKinematic = !isRagdoll;
+        for (int j = 1; j < colliders.Length; j++) colliders[j].enabled = isRagdoll;
+
+        rigidBodies[0].isKinematic = isRagdoll;
+        colliders[0].enabled = !isRagdoll;
+    }
+}

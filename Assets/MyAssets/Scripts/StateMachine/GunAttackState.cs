@@ -8,6 +8,7 @@ public class GunAttackState : AttackBaseState
     float reattackTime;
     public override void EnterState(AttackStateManager attack)
     {
+        attack.playerAnim.ResetTrigger("AxAttack");
         attack.axHolderRig.weight = 0;
         attack.gunHolderRig.weight = 1;
 
@@ -39,7 +40,7 @@ public class GunAttackState : AttackBaseState
 
     public override void UpdateState(AttackStateManager attack)
     {
-        if (attack.TargetDetectment.zombieColliders.Length > 0)
+        if (attack.TargetDetectment.zombieCollLen > 0)
         {
             Attack(attack);
         }

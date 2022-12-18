@@ -22,7 +22,7 @@ public class TargetDetecmentConst : MonoBehaviour
 
     public void Scan()
     {
-        colliders= Physics.OverlapSphere(radarPoint.position, range, scanLayer);
+        Physics.OverlapSphereNonAlloc(radarPoint.position, range, colliders,scanLayer);
 
     }
 

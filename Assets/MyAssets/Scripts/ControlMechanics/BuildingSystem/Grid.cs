@@ -6,12 +6,13 @@ public class Grid : MonoBehaviour
 {
     [SerializeField] float interval = 5f;
     [SerializeField] float num = 130;
+    public Dictionary<Vector3, int> replecables;
 
-    public static Dictionary<Vector3, int> replecables;
     private void Awake()
     {
         replecables = new Dictionary<Vector3, int>();
-    } 
+    }
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
@@ -20,7 +21,6 @@ public class Grid : MonoBehaviour
             for (float z = 0; z < num; z += interval)
             {
                 var point = GetNearestPointOnGrid(new Vector3(transform.position.x + x, 0f, transform.position.z + z));
-                //replecables.Add(point, 0);
                 Gizmos.DrawSphere(point, 0.5f);
             }
         }
@@ -33,7 +33,7 @@ public class Grid : MonoBehaviour
             for (float z = 0; z < num; z += interval)
             {
                 var point = GetNearestPointOnGrid(new Vector3(transform.position.x + x, 0f, transform.position.z + z));
-                replecables.Add(point, 0);
+                replecables.Add(point, 1);
             }
         }
     }
@@ -53,7 +53,6 @@ public class Grid : MonoBehaviour
 
         return result;
     }
-
 }
 
 

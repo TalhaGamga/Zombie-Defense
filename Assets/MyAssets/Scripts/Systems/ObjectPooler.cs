@@ -16,7 +16,6 @@ public class ObjectPooler : Singleton<ObjectPooler>
     public Dictionary<string, Queue<GameObject>> poolDictionary;
 
     public Transform parent;
-    public Transform bagObj;
 
     Vector3 bagInitScale;
 
@@ -78,8 +77,8 @@ public class ObjectPooler : Singleton<ObjectPooler>
     public IEnumerator IECollectPrices(string tag, Vector3 position, Quaternion rotation, Transform collectPoint)
     {
         int num = Random.Range(10, 15);
-        bagObj.transform.DOScale(bagInitScale + Vector3.forward * 2 + Vector3.right, .1f * num).SetEase(Ease.InOutBounce).
-            OnComplete(() => bagObj.transform.DOScale(bagInitScale, .1f * num)).SetEase(Ease.InOutBounce);
+        //bagObj.transform.DOScale(bagInitScale + Vector3.forward * 2 + Vector3.right, .1f * num).SetEase(Ease.InOutBounce).
+        //    OnComplete(() => bagObj.transform.DOScale(bagInitScale, .1f * num)).SetEase(Ease.InOutBounce);
 
         List<ICollectable> collectables = new List<ICollectable>();
         for (int i = 0; i < num; i++)
@@ -93,7 +92,7 @@ public class ObjectPooler : Singleton<ObjectPooler>
 
         foreach (Collectable collectable in collectables)
         {
-            collectable.Collect();
+            collectable.Collect(collectPoint);
             yield return new WaitForSeconds(.1f);
         }
 
@@ -103,5 +102,11 @@ public class ObjectPooler : Singleton<ObjectPooler>
     public void CallCollectPrices(string tag, Vector3 position, Quaternion rotation, Transform parent)
     {
         StartCoroutine(IECollectPrices(tag, position, rotation, parent));
+    }
+
+    public void DropGold(Vector3 pos, Transform collectPoint)
+    {
+        GameObject obj = SpawnFromPool(PriceType.Gold.ToString(), pos + Vector3.up*3, Quaternion.identity, collectPoint);
+        obj.GetComponent<Collectable>().Collect(PlayerManager.Instance.collectPoint);
     }
 }

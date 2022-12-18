@@ -6,6 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public abstract class StatBase : MonoBehaviour, IStat
 {
+    public PriceType priceType;
     public GameObject hpBarObj;
     public event Action<float> OnHpPctChanged;
 
@@ -13,7 +14,8 @@ public abstract class StatBase : MonoBehaviour, IStat
     public float currentHp;
 
     public Vector3 shotDir;
-
+    public Transform collectPoint;
+    
     private void Awake()
     {
         currentHp = maxHp;
@@ -40,5 +42,11 @@ public abstract class StatBase : MonoBehaviour, IStat
     public virtual void ChangeToPct(float currentHealth, float maxHealth)
     {
         OnHpPctChanged?.Invoke(currentHealth / maxHealth);
+    }
+
+    public void Revive()
+    {
+        currentHp = maxHp;
+        ChangeToPct(currentHp, maxHp);
     }
 }

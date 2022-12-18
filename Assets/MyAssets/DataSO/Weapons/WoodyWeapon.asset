@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea843608aea22f542914a2c7d595f366, type: 3}
+  m_Name: WoodyWeapon
+  m_EditorClassIdentifier: 
+  state: 1
+  range: 4
+  reattackTime: 0.5
+  damage: 10
+  price: 200
+  itemInfo: WoodyWeapon
+  pickUpPos: {x: -0.08, y: 0.196, z: -0.056}
+  pickupRot: {x: 0.8345755, y: 0.006894797, z: -0.0935551, w: -0.5428477}
+  pickUpScale: {x: 0.09410303, y: 0.13829392, z: 0.11888838}

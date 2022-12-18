@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class DoorHpBar : HpBarBase
+public class DoorHpBar : BarBase
 {
     [SerializeField]
     private DoorStateManager doorStateManager;
