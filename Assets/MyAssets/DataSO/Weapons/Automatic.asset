@@ -15,7 +15,7 @@ MonoBehaviour:
   state: 0
   range: 15
   reattackTime: 0.1
-  damage: 10
+  damage: 50
   price: 3500
   itemInfo: Automatic Gun
   pickUpPos: {x: 0.0454, y: 0.1574, z: 0.1193}

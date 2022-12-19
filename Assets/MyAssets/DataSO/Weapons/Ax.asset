@@ -15,7 +15,7 @@ MonoBehaviour:
   state: 1
   range: 4
   reattackTime: 0.5
-  damage: 50
+  damage: 150
   price: 1800
   itemInfo: Ax
   pickUpPos: {x: -0.017, y: 0.072, z: 0.008}

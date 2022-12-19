@@ -14,12 +14,19 @@ public class ZombieStats : EnemyStats
     Rigidbody[] rigidBodies;
     Collider[] colliders;
 
+    Color initColor;
+
+    Material mat1, mat2;
     private void Start()
     {
         rigidBodies = transform.GetComponentsInChildren<Rigidbody>();
         colliders = transform.GetComponentsInChildren<Collider>();
 
         SetRagdoll(false);
+
+        initColor = charRenderer.material.color;
+        mat1 = charRenderer.materials[1];
+        mat2 = charRenderer.materials[2];
     }
 
     public override void TakeDamage(float _damage)
@@ -62,9 +69,10 @@ public class ZombieStats : EnemyStats
         SetRagdoll(true);
 
         yield return new WaitForSeconds(5f);
-        Destroy(gameObject);
+        ResetZombie();
+        //Destroy(gameObject);
     }
-     
+
     void SetRagdoll(bool isRagdoll)
     {
         anim.enabled = !isRagdoll;
@@ -74,5 +82,27 @@ public class ZombieStats : EnemyStats
 
         rigidBodies[0].isKinematic = isRagdoll;
         colliders[0].enabled = !isRagdoll;
+    }
+
+    void ResetZombie()
+    {
+        SetRagdoll(false);
+        gameObject.layer = LayerMask.NameToLayer("Zombie");
+        charRenderer.materials[0].color = initColor;
+
+        charRenderer.materials[1] = mat1;
+        charRenderer.materials[2] = mat2;
+
+        navMeshAgent.isStopped = false;
+        GetComponent<Rigidbody>().isKinematic = false;
+        GetComponent<Collider>().enabled = true;
+        hpBarObj.SetActive(true);
+
+        characterController.enabled = true;
+
+
+        Revive();
+
+        gameObject.SetActive(false);
     }
 }

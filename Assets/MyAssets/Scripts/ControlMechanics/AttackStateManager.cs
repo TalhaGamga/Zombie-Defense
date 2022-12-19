@@ -149,4 +149,22 @@ public class AttackStateManager : MonoBehaviour
         BulletController bullet = Instantiate(bulletController, firePoint.position, transform.rotation);
         return bullet;
     }
+
+    public void SwitchAttackState()
+    {
+
+        switch (attackState)
+        {
+            case AttackState.Gun:
+                SwitchState(AttackState.Ax);
+                break;
+
+            case AttackState.Ax:
+                SwitchState(AttackState.Gun);
+                break;
+            default:
+                break;
+        }
+
+    }
 }

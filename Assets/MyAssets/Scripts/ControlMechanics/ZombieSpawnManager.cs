@@ -6,7 +6,6 @@ public class ZombieSpawnManager : MonoBehaviour
 {
     [SerializeField] GameObject doorTargetPoint;
     [SerializeField] GameObject zombiePrefab;
-
     [SerializeField] DoorStateManager doorStateManager;
 
     GameObject zombie;
@@ -15,7 +14,7 @@ public class ZombieSpawnManager : MonoBehaviour
 
     void Start()
     {
-        //StartCoroutine(SpawnZombie());
+        StartCoroutine(SpawnZombie());
 
     }
 
@@ -29,22 +28,14 @@ public class ZombieSpawnManager : MonoBehaviour
 
     IEnumerator SpawnZombie()
     {
+        yield return new WaitForSeconds(10f);
         for (int i = 0; i < 10; i++)
-        {
-            //zombie = Instantiate(zombiePrefab, transform.position, Quaternion.identity, transform);
+        {   
             zombie = ObjectPooler.Instance.SpawnFromPool("Zombie", transform.position, Quaternion.identity);
             yield return new WaitForSeconds(0.1f);
         }
-
-        //if (doorStateManager.stats.currentHp> 0)
-        //{
-        //    OnSettingTarget?.Invoke(doorTargetPoint); //Make here automatic (target setter etc.)
-        //}
-
-        //else
-        //{
-        //    OnSettingTarget?.Invoke(PlayerManager.Instance.player);
-        //}
+        yield return new WaitForSeconds(20f);
+        StartCoroutine(SpawnZombie());
     }
 
 

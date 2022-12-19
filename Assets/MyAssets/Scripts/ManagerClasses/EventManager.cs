@@ -11,4 +11,6 @@ public static class EventManager
 
     public static Func<PlayerManager> GetPlayer;
     public static Action<BuildingBase> OnReplaceBuilding;
+
+    //public static Action OnBuildingWall;
 } 
