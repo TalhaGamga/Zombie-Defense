@@ -12,6 +12,22 @@ public class BuildWall : MonoBehaviour
 
     [SerializeField] NavMeshAgent navMesh;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            if (!isAble)
+            {
+
+                isAble = true;
+                buildCor = StartCoroutine(IEBuild());
+                return;
+            }
+
+            isAble = false;
+            StopCoroutine(buildCor);
+        }
+    }
     IEnumerator IEBuild()
     {
         while (isAble)
@@ -25,23 +41,19 @@ public class BuildWall : MonoBehaviour
 
             else
             {
-                GameObject _wall = Instantiate(wall, point, Quaternion.identity);
-                grid.replecables[point] = 0;
-                float angle = GetAngle(navMesh.velocity, Vector3.forward);
-
-                if (angle >= 45 && angle <= 90 || angle >= 90 && angle <= 135)
+                if (PlayerManager.Instance.priceDict[PriceType.Stone].currentPrice > 0)
                 {
-                    _wall.transform.Rotate(0, 90, 0);
+
+                    GameObject _wall = Instantiate(wall, point, Quaternion.identity);
+                    grid.replecables[point] = 0;
+
+                    PlayerManager.Instance.priceDict[PriceType.Stone].SetPrice(-1);
                 }
+
             }
 
             yield return new WaitForSeconds(.1f);
         }
-    }
-
-    float GetAngle(Vector3 v1, Vector3 v2)
-    {
-        return Vector3.Angle(v1, v2);
     }
 
     public void Build()

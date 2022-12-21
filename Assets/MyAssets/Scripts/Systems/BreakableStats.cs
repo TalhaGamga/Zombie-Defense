@@ -8,18 +8,21 @@ public class BreakableStats : StatBase
     ObjectPooler objectPooler;
     [SerializeField] GameObject livingModel;
     [SerializeField] GameObject diedModel;
+    Vector3 preScale;
     private void Start()
     {
         priceType = priceTypeSO.priceType;
         currentHp = maxHp;
 
         objectPooler = ObjectPooler.Instance;
+
+        preScale = transform.localScale;
     }
 
     public override void Die()
     {
         objectPooler.CallCollectPrices(priceType.ToString(), transform.position, Quaternion.identity, collectPoint);
-        //Destroy(gameObject);
+        
         gameObject.layer = LayerMask.NameToLayer("Died");
         livingModel.SetActive(false);
         diedModel.SetActive(true);
@@ -33,7 +36,7 @@ public class BreakableStats : StatBase
 
         ChangeToPct(currentHp, maxHp);
 
-        Vector3 preScale = transform.localScale;
+        
 
         transform.DOScale(preScale + Vector3.one * 0.2f, .1f).OnComplete(() => transform.DOScale(preScale, .1f));
 
@@ -45,7 +48,7 @@ public class BreakableStats : StatBase
 
     IEnumerator IEGrowUp()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(25f);
         transform.DOShakeScale(5, 0.05f,7,30,false);
         yield return new WaitForSeconds(5f);
         gameObject.layer = LayerMask.NameToLayer("Breakable");

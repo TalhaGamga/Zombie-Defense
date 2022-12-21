@@ -9,14 +9,14 @@ public class GameManager : Singleton<GameManager>
     public CinemachineVirtualCamera mainVirtualCamera;
     public Transform snappingCamPos;
     public void SwitchToBuildingCamera()
-    { 
-        mainVirtualCamera.Priority = 8;
+    {
         EventManager.OnStoppingGame?.Invoke();
+        mainVirtualCamera.Priority = 8;
     }
 
     public void SwitchToPlayerFollowerCamera()
     {
-        mainVirtualCamera.Priority = 11;
         EventManager.OnPlayingGame?.Invoke();
+        mainVirtualCamera.Priority = 11;
     }
 }

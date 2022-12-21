@@ -33,6 +33,24 @@ public class PlayerManager : Singleton<PlayerManager>
         EventManager.GetPlayer -= GetPlayerManager;
     }
 
+    private void Start()
+    {
+        foreach (Price price in prices)
+        {
+            price.SetPriceUi();
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            priceDict[PriceType.Gold].SetPrice(500);
+            priceDict[PriceType.Wood].SetPrice(500);
+            priceDict[PriceType.Stone].SetPrice(500);
+        }
+    }
+
     PlayerManager GetPlayerManager()
     {
         return this;

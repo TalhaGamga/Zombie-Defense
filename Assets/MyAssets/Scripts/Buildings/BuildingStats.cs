@@ -4,4 +4,8 @@ using UnityEngine;
 
 public class BuildingStats : BuildingStatBase
 {
+    private void Start()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Building");
+    }
 }

@@ -9,7 +9,7 @@ public class SupportAIController : CharacterControllerBase
     public GameObject ax;
     public AxCollision axCollision;
 
-    public void Update()
+    public override void Update()
     {
         if (targetDetecment.transformToPoint != null)
         {

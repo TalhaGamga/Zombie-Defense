@@ -81,11 +81,13 @@ public class PlayerMovement : MonoBehaviour
     void Movable()
     {
         isMovable = true;
+        navMesh.isStopped = false;
     }
 
     void DisMovable()
     {
         isMovable = false;
+        navMesh.isStopped = true;
         anim.SetFloat("Speed", 0, 0, 1);
     }
 }

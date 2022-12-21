@@ -17,6 +17,12 @@ public class ZombieStats : EnemyStats
     Color initColor;
 
     Material mat1, mat2;
+
+    private void OnEnable()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Zombie");
+    }
+
     private void Start()
     {
         rigidBodies = transform.GetComponentsInChildren<Rigidbody>();
@@ -45,6 +51,8 @@ public class ZombieStats : EnemyStats
 
     void CallIEDie()
     {
+        gameObject.layer = LayerMask.NameToLayer("Died");
+
         ObjectPooler.Instance.DropGold(transform.position, transform);
 
         navMeshAgent.isStopped = true;
@@ -64,8 +72,6 @@ public class ZombieStats : EnemyStats
 
     IEnumerator IEDie()
     {
-        gameObject.layer = LayerMask.NameToLayer("Died");
-
         SetRagdoll(true);
 
         yield return new WaitForSeconds(5f);
@@ -87,7 +93,6 @@ public class ZombieStats : EnemyStats
     void ResetZombie()
     {
         SetRagdoll(false);
-        gameObject.layer = LayerMask.NameToLayer("Zombie");
         charRenderer.materials[0].color = initColor;
 
         charRenderer.materials[1] = mat1;
@@ -100,9 +105,9 @@ public class ZombieStats : EnemyStats
 
         characterController.enabled = true;
 
-
+        transform.position = Vector3.zero;
         Revive();
 
         gameObject.SetActive(false);
     }
-}
+} 

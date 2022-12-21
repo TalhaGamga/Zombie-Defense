@@ -12,13 +12,13 @@ public abstract class CharacterControllerBase :MonoBehaviour, ICharacterControll
 
     public AITargetDetecment targetDetecment;
 
-    public void Awake()
+    public void Awake() 
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.speed = stats.movementSpeed;
     }
 
-    public void Update()
+    public virtual void Update()
     {
         if (targetDetecment.transformToPoint != null)
         {

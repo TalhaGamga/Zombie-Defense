@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Rifle
   m_EditorClassIdentifier: 
   state: 0
-  range: 10
+  range: 15
   reattackTime: 0.1
-  damage: 10
+  damage: 50
   price: 3500
   itemInfo: Rifle Gun
   pickUpPos: {x: -0.0535, y: 0.0984, z: 0.0076}

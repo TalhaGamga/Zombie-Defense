@@ -22,6 +22,7 @@ public class CharacterStats : StatBase
     {
         _damage = Mathf.Clamp(_damage, 0, int.MaxValue);
         _damage -= armor;
+        Debug.Log(_damage);
         currentHp -= _damage;
 
         ChangeToPct(currentHp, maxHp); //From StatBase
